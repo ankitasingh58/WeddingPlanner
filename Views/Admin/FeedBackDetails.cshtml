@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "FeedBackDetails";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+@using Wedding_Planner.Models;
+@model IEnumerable<FeedBackMaster>
+
+<script>
+    $(document).ready(function () {
+        var x = $("#feedDetail").text().trim();
+        if (x.length > 0)
+            $("#feedDetail").fadeIn(100).delay(2500).fadeOut(1500);
+    });
+</script>
+<style>
+    table tr:hover {
+        background-color: lightgray;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+       
+        <div class="col-sm-12">
+            <h1 align="center" style="color:saddlebrown;font-weight:bold;font-family:'Script MT' ">All Feed    back Records</h1>
+            <hr style="border-top: 1px solid saddlebrown " />
+            <p id="feedDetail" align="center" class="h5 text-center " style="min-height: 20px; width: 100%; padding: 2px; padding-top: 10px; font-size: 20px; font-weight: bold; color: #ae0707;display:none;">@TempData["Message"]</p>
+
+            <table border="1" width="100%">
+                <tr style="background-color:saddlebrown; color:white;text-align:center; height:45px;" align="center">
+                    <th style="text-align:center">SNO</th>
+
+                    <th style="text-align:center">&nbsp;&nbsp;ID&nbsp;&nbsp; </th>
+                    <th style="text-align:center">Title</th>
+                    <th style="text-align:center">Rating</th>
+                    <th style="text-align:center">Message</th>
+                    <th style="text-align:center">FeedBack By</th>
+                    <th style="text-align:center">Date & Time</th>
+                    <th style="text-align:center">Manage Record</th>
+
+
+
+                </tr>
+                @{
+                    int sno = 1;
+                    foreach (FeedBackMaster tc in Model)
+                    {
+                                <tr style="height:40px;">
+                                    <td style="text-align:center">@sno</td>
+                                    <td style="text-align:center">@tc.FeedBackId</td>
+                                    <td style="text-align:center">@tc.Subject</td>
+                                    <td style="text-align:center">@tc.Rating</td>
+                                    <td>@tc.Message</td>
+                                    <td>@tc.FeedBackBy</td>
+                                    <td style="text-align:center">@tc.Date_Time</td>
+                                    
+                                    <td style="text-align:center">
+                                        <a href="@Url.Action("DeleteFeedBackRecords","Admin" , new { feedId = tc.FeedBackId })"><i class="fa fa-trash" aria-hidden="true" style="color:saddlebrown;font-size:25px;"></i></a>
+   
+                                    </td>
+
+                                </tr>
+                        sno++;
+                    }
+                }
+            </table>
+            <br />
+
+        </div>
+
+    </div>
+</div>

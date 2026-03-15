@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "ComplainDetails";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@using Wedding_Planner.Models;
+@model IEnumerable<ComplaintsMaster>
+
+
+
+<script>
+    $(document).ready(function () {
+        var x = $("#compDetail").text().trim();
+        if (x.length > 0)
+            $("#compDetail").fadeIn(100).delay(2500).fadeOut(1500);
+    });
+</script>
+<style>
+    table tr:hover {
+        background-color: lightgray;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+       
+        <div class="col-sm-12">
+            <h1 align="center" style="color:saddlebrown;font-weight:bold;font-family:'Script MT' ">Complaints Records</h1>
+            <hr style="border-top: 1px solid saddlebrown " />
+            <p id="compDetail" align="center" class="h5 text-center " style="min-height: 20px; width: 100%; padding: 2px; padding-top: 10px; font-size: 20px; font-weight: bold; color: #ae0707;display:none;">@TempData["Message"]</p>
+
+            <table border="1" width="100%">
+                <tr style="background-color:saddlebrown; color:white;text-align:center; height:45px;" align="center">
+                    <th style="text-align:center">SNO</th>
+
+                    <th style="text-align:center">Complain ID</th>
+                    <th style="text-align:center">Complain By</th>
+                    <th style="text-align:center">Complain Title</th>
+                    <th style="text-align:center">Complain</th>
+
+                    <th style="text-align:center">Date & Time</th>
+                    <th style="text-align:center">Manage Record</th>
+
+
+
+                </tr>
+                @{
+                    int sno = 1;
+                    foreach (ComplaintsMaster tc in Model)
+                    {
+                                <tr style="height:40px;">
+                                    <td style="text-align:center">@sno</td>
+                                    <td style="text-align:center">@tc.SubjectId</td>
+                                    <td>@tc.ComplainBy</td>
+                                    <td style="text-align:center">@tc.SubjectName</td>
+
+                                    <td>@tc.Message</td>
+
+
+                                    <td style="text-align:center">@tc.Date_Time</td>
+                                    <td style="text-align:center">
+                                        <a href="@Url.Action("DeleteComplaintsRecords","Admin" ,  new { Subid = tc.SubjectId })"><i class="fa fa-trash" aria-hidden="true" style="color:saddlebrown;font-size:25px;"></i></a>
+                                    </td>                                 
+                                </tr>
+                        sno++;
+                    }
+                }
+            </table>
+            <br />
+
+        </div>
+
+    </div>
+</div>

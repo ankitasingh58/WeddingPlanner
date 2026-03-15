@@ -1,0 +1,290 @@
+﻿
+@{
+    ViewBag.Title = "FAQS";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+<style>
+    .fq {
+        font-family: 'Eras ITC';
+        color: #877B89;
+    }
+
+    .ni {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+</style>
+
+<script>$(document).ready(function () {
+    
+    $("#img1").click(function () {
+        $("#mypara1").slideToggle(900);
+        var x = $(this).attr("src").indexOf("minus");
+        if (x >= 0)
+            $(this).attr("src", "/Content/images/icons/plus.jpg");
+        else
+            $(this).attr("src", "/Content/images/icons/minus.jpg");
+    });
+    $(".img").click(function () {
+        $(this).parents(".fq5").find(".mypara").slideToggle(900);
+        var x = $(this).attr("src").indexOf("plus");
+        if (x >= 0)
+            $(this).attr("src", "/Content/images/icons/minus.jpg");
+        else
+            $(this).attr("src", "/Content/images/icons/plus.jpg");
+
+
+
+    });
+})</script>
+
+<div class="container-fluid" style="background-color:ghostwhite">
+    <div class="row">
+        <br />
+        <div class="col-sm-12 phon"
+             style="min-height: 310px; margin-top:35px; padding: 0px; background-image: url('/Content/images/ask1.jpg'); background-repeat: no-repeat; min-width: 100%; background-size: cover ">
+            <div class="col-sm-12" style="background: rgba(2,2,2,0.4); min-height: 310px;min-width:100% ">
+                <h3 class="display-3 animated slideInDown text-center" style="color:white;text-shadow:2px 5px 2px maroon;padding-top:80px;opacity:0.5">Frequently Asked Question</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row blank1">
+        <div class="col-sm-12 "></div>
+
+    </div>
+    <div class="row fq">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <p align="left" style="font-size: 25px; font-family:'Script MT'; font-weight:550; color:saddlebrown;">
+                With so many different elements and aspects to a wedding, you may have numerous questions about where to begin or how to progress. We have answered a few frequently asked questions about wedding planning and management and our services.
+            </p>
+
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row blank1">
+        <div class="col-sm-12"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h4 style="font-size:22px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img id="img1" src="~/Content/images/icons/minus.jpg" style="height:30px; width:30px;cursor:pointer;margin-left:10px;" />&nbsp;&nbsp;Does Wedding Planners only  do Wedding Planning and  Management</h4>
+            <p id="mypara1" style="font-size: 18px; color: #8a7c8d; padding-left: 80px; " align="justify">Our specialization is destination weddings where we create memorable wedding celebrations for families. As a part of this, we conceptualize, plan, and manage all pre-wedding celebrations, wedding events, and private events. Our team has over a decade of experience in Wedding planning and management which enables us to make the entire process comfortable and efficient for our clients.</p>
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b;" />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22PX; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;What can wedding planners do for me ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">When it comes to weddings, we assist families from beginning to end. Right from identifying the ideal destination, picking suitable venues, consultation, planning, designing, and coordination are all taken care of by our professional team. With over a decade of experience, we have an edge in venue selection, wedding invites, decor, styling, travel arrangements, bridal care, and much more. Our professional planners liaise with vendors from inception to wrap, so you are relieved of the effort. Our level of involvement depends on how much you wish to delegate to us.</p>
+        </div>
+
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size:22px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight:bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;Is it expensive to hire a wedding planner ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">All our services are tailor-made to suit your needs and budgets. Thanks to our vast network of vendors, we enjoy preferential rates that we pass on to you to benefit from. Your savings in terms of time, money, and effort are worth it when you decide to work with Vivaah Celebrations.</p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold ">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;Does wedding planners provide services overeseas ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">We specialize in Destination weddings, hence our services can be engaged globally. We have successfully managed a large number of destination weddings working with a vast network of vendors internationally in numerous cities around the world. Specially designed tools ensure that we are always connected with you and your family to keep you informed and updated on every detail and progress so we can deliver a memorable celebration for your big day.</p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold ">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;What kind of weddings does planners sepcialise in ? </h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">While we specialize in Indian weddings, we have also planned and managed many cross-cultural weddings across different nationalities and ethnicities. Our knowledge and experience is not just limited to traditional South Asian Weddings. Our team can think out of the box and have the expertise to offer various innovative concepts for your big day.</p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold ">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;Can wedding planner assits if we bring our own vendors ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">
+                We understand that you may choose to work with a particular vendor for a service at your wedding celebration, and we are totally alright with that. Our professional team can liaise with your vendors and service providers regularly, whether local or international, to keep track of progress from start to finish, thereby relieving you of the effort. We ensure what has been agreed upon is delivered efficiently.
+
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height: 32px;  width: 32px; cursor: pointer" />&nbsp;What does the wedding planning and management service cost ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">
+                Our wedding planning and management services are customized to suit your requirements and preferences. Therefore, our pricing depends on multiple factors. We charge a one-time planning and management fee for our services with no hidden or extra costs. Our prime focus is to deliver a memorable wedding celebration for you keeping in view your budgets and expectations.
+
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;When is an ideal time to engage a wedding planner's service ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">
+                All good things take time and detail. Since it’s your big day, you wouldn’t want it any less than perfect. We recommend engaging our wedding planning and management services a minimum of 6-10 months before your set wedding dates. We follow a systematic approach to your big day using multiple tools and practices that ensures we are progressing effectively in the right direction.
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;What is my wedding gets postponed or cancles ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">
+                We understand that there may be situations beyond your control, and you may want to postpone or cancel your celebration. We assist you in negotiating the right contracts right from the early stages to ensure that you are protected in case of a postponement or cancellation. In the case of an unforeseen situation where a wedding may need to be postponed or canceled, we assist you with contract flexibility and refunds where eligible.
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;What precautions is there taking with the present health and safty chalenges ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">
+                We at Vivaah Celebrations have always maintained the highest standards in safety, health, and hygiene. Even more so in present times. Our team members are certified in Health & Safety, as well as trained for COVID-19 Precautions and Guidelines. In addition to this, we ensure that our vendors follow best practices and comply with the international hygiene standards set out and defined by the local authorities and the World Health Organization (WHO).
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;How does the Fource Majeure project me ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">
+                We ensure that your exit from contracts is as smooth and easy as possible. If an Act of God (Force Majeure), such as a fire, flood, earthquake, pandemic, or other natural calamity that shall cause you to cancel your event; we will assist you with flexibility and refunds with vendors as set out in the contracts.
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b; " />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height:30px; width:30px;cursor:pointer" />&nbsp;Does your team take on the liaison with our guest and RSVP management ?</h3>
+            <p class="mypara" style="font-size: 18px; color: #8a7c8d; display: none; padding-left: 80px;" align="justify">
+                We love knowing your family and friends better. While most families choose to liaise with their guests themselves, we are happy to take this over from you as an additional service. Our dedicated team compiles guest information, follows up, seeks confirmation, notes special requests, and does everything possible to ensure your guests have the most luxurious, stress-free, and comfortable experience at your wedding.
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b;" />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 fq5">
+            <h3 style="font-size: 22px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">  <img class="img" src="~/Content/images/icons/plus.jpg" style="height: 30px; width: 30px; cursor: pointer" />&nbsp;What if I want my wedding to be a private affair ?</h3>
+            <p class="mypara" style="font-size: 18px;color:#8a7c8d; display: none; padding-left: 80px;" align="justify">
+                We do undertake a lot of high-profile celebrations where our clients choose to keep their events private. For this, we follow a set of protocols and carefully written out contracts that help protect our client’s privacy while maintaining the highest level of safety and security for their high-profile guests.
+            </p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <hr style="border-top: 1px solid #8b45137b;" />
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <br /><br />
+
+</div>

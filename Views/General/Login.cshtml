@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+<script>
+    // validate login
+    $(document).ready(function () {
+        $("#btnlog").click(function () {
+            var status = true;
+            var userid, pass, usertype;
+
+
+            userid = $("#UserId").val().trim();
+            pass = $("#User_Password").val().trim();
+            usertype = $("#User_Type").val().trim();
+            //To clear erroror message
+
+            $(".err").remove();
+
+            //To Validate Id
+            if (userid.length == 0) {
+                $("#UserId").after("<span class='err'>Please enter the user id</span>");
+                status = false;
+
+            }
+            //To Validate password
+            if (pass.length == 0) {
+                $("#User_Password").after("<span class='err'>please enter your password</span>");
+                status = false;
+
+            }
+
+            //To Validate UserType
+            if (usertype.length == 0) {
+                $("#User_Type").after("<span class='err'>Please Choose User Type</span>");
+                status = false;
+
+            }
+
+            return status;
+
+        });
+    });
+</script>
+
+<style>
+
+    .btn-grad2 {
+        background-image: linear-gradient(to right, #ce7c11 2%, #fcc57c 20%, #D1913C 100%,#ce7c11 2%);
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        height: 40px;
+        box-shadow: 0 0 10px #eee;
+        border-radius: 10px;
+        display: block;
+        border: none;
+    }
+
+        .btn-grad2:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+    
+        }
+    .form-control:hover {
+        border: 1px solid saddlebrown;
+        color: white;
+        background-color: rgba(2,2,2,0.5);
+    }
+
+    .form-control {
+        background-color: rgba(2,2,2,0.4);
+        color: white;
+    }
+    .err{
+        color:red;
+    }
+</style>
+<div class="container-fluid" style="background-image: url('/Content/images/n4.jpeg'); background-repeat: no-repeat; background-size: cover; width: 100%;margin-top:35px;">
+
+    <div class="row" style="min-height:70px;">
+        <div class="col-sm-12"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="padding-top:10px;margin-left:40px;margin-right:40px;background:rgba(3,3,3,0.6);min-height:350px;max-width:370px;">
+
+            <h3 class="text-center" style="color: #fb9313; font-size: 40px; padding-bottom:17px;"> <i style=" color: #fb9313;font-size:28px;" class="fa fa-key"></i>&nbsp;Login Now</h3>
+            @using (Html.BeginForm("Login", "General", FormMethod.Post))
+            {
+                @Html.Password("UserId", null, new { placeholder = "User Id",type="email", @class = "form-control" })
+                <br />
+                @Html.Password("User_Password", null, new { placeholder = "Password", @class = "form-control" })
+                <br />
+                <select name="User_Type" id="User_Type" class="form-control">
+                    <option value="">User Type</option>
+                    <option value="USER">User</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
+                <div class="row">
+                    <div align="left" class="col-sm-6" style="padding-top:14px;">
+                        &nbsp;<input type="checkbox" value="" required><span style="text-decoration:none;font-size:14px;font-weight:bold;color:white;">&nbsp;&nbsp;Remember me</span>
+                    </div>
+                    <div align="right" class="col-sm-6" style="padding-top:14px;">
+                            <a href="#" id="LnkForgot" style="text-decoration:none;font-size:14px;font-weight:bold;color:white;">Forgot Password</a>
+                        </div>
+                    </div>
+                        <div class="row" style="margin-top:18px;">
+                            <div align="center" class="col-sm-12" style="padding-top:10px;">
+                                <input type="submit" id="btnlog" value="Login" class="btn btn-info btn-block btn-grad2" style="border-radius:35px 35px 35px 35px;width:210px;" />
+
+                            </div>
+                        </div>
+
+                        }
+                        <p align="center" style="color:#d41616;font-weight:bold">@ViewBag.Message</p>
+                    </div>
+
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+
+
+

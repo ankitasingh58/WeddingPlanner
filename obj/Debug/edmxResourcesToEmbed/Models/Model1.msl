@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Wedding_PlannerModelStoreContainer" CdmEntityContainer="Wedding_PlannerEntities">
+    <EntitySetMapping Name="AmentiesMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.AmentiesMaster">
+        <MappingFragment StoreEntitySet="AmentiesMaster">
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="Laun" ColumnName="Laun" />
+          <ScalarProperty Name="Hall" ColumnName="Hall" />
+          <ScalarProperty Name="Music" ColumnName="Music" />
+          <ScalarProperty Name="Tent" ColumnName="Tent" />
+          <ScalarProperty Name="Parlour" ColumnName="Parlour" />
+          <ScalarProperty Name="Catering" ColumnName="Catering" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AreaMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.AreaMaster">
+        <MappingFragment StoreEntitySet="AreaMaster">
+          <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+          <ScalarProperty Name="Area_Name" ColumnName="Area_Name" />
+          <ScalarProperty Name="Related_City_Id" ColumnName="Related_City_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.BookingMaster">
+        <MappingFragment StoreEntitySet="BookingMaster">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="BookedBy" ColumnName="BookedBy" />
+          <ScalarProperty Name="EventList" ColumnName="EventList" />
+          <ScalarProperty Name="BookDate" ColumnName="BookDate" />
+          <ScalarProperty Name="GuestCount" ColumnName="GuestCount" />
+          <ScalarProperty Name="Hall" ColumnName="Hall" />
+          <ScalarProperty Name="Lawn" ColumnName="Lawn" />
+          <ScalarProperty Name="Music" ColumnName="Music" />
+          <ScalarProperty Name="Tent" ColumnName="Tent" />
+          <ScalarProperty Name="Parlour" ColumnName="Parlour" />
+          <ScalarProperty Name="Catering" ColumnName="Catering" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CityMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.CityMaster">
+        <MappingFragment StoreEntitySet="CityMaster">
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComplaintsMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.ComplaintsMaster">
+        <MappingFragment StoreEntitySet="ComplaintsMaster">
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ComplainBy" ColumnName="ComplainBy" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.ContactMaster">
+        <MappingFragment StoreEntitySet="ContactMaster">
+          <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnquiryMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.EnquiryMaster">
+        <MappingFragment StoreEntitySet="EnquiryMaster">
+          <ScalarProperty Name="Enquiry_Id" ColumnName="Enquiry_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Enquiry_Message" ColumnName="Enquiry_Message" />
+          <ScalarProperty Name="Enquiry_DateTime" ColumnName="Enquiry_DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.EventMaster">
+        <MappingFragment StoreEntitySet="EventMaster">
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeedBackMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.FeedBackMaster">
+        <MappingFragment StoreEntitySet="FeedBackMaster">
+          <ScalarProperty Name="FeedBackId" ColumnName="FeedBackId" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="FeedBackBy" ColumnName="FeedBackBy" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.LoginMaster">
+        <MappingFragment StoreEntitySet="LoginMaster">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+          <ScalarProperty Name="User_Status" ColumnName="User_Status" />
+          <ScalarProperty Name="Login_Count" ColumnName="Login_Count" />
+          <ScalarProperty Name="Last_Login_Time" ColumnName="Last_Login_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.UserMaster">
+        <MappingFragment StoreEntitySet="UserMaster">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Related_City_Id" ColumnName="Related_City_Id" />
+          <ScalarProperty Name="Related_Area_Id" ColumnName="Related_Area_Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Picture_File_Name" ColumnName="Picture_File_Name" />
+          <ScalarProperty Name="DateTime_Of_Reg" ColumnName="DateTime_Of_Reg" />
+          <ScalarProperty Name="Is_Del" ColumnName="Is_Del" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SendEmailMasters">
+      <EntityTypeMapping TypeName="Wedding_PlannerModel.SendEmailMaster">
+        <MappingFragment StoreEntitySet="SendEmailMaster">
+          <ScalarProperty Name="Send_On" ColumnName="Send_On" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Send_Id" ColumnName="Send_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

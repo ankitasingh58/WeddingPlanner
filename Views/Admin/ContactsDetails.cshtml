@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "ContactsDetails";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@using Wedding_Planner.Models;
+@model IEnumerable<ContactMaster>
+
+
+
+<script>
+    $(document).ready(function () {
+        var x = $("#ContactDetail").text().trim();
+        if (x.length > 0)
+            $("#ContactDetail").fadeIn(100).delay(2500).fadeOut(1500);
+    });
+</script>
+<style>
+    table tr:hover {
+        background-color: lightgrey;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-sm-12">
+            <h1 align="center" style="color:saddlebrown;font-weight:bold;font-family:'Script MT' "> Contact Records</h1>
+            <hr style="border-top: 1px solid saddlebrown " />
+            <p id="ContactDetail" align="center" class="h5 text-center " style="min-height: 20px; width: 100%; padding: 2px; padding-top: 10px; font-size: 20px; font-weight: bold; color: #ae0707;display:none;">@TempData["Message"]</p>
+
+            <table border="1" width="100%">
+                <tr style="background-color:saddlebrown; color:white;text-align:center; height:45px;" align="center">
+                    <th style="text-align:center">SNO</th>
+
+                    <th style="text-align:center">Contact Id</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Father Name</th>
+                    <th style="text-align:center">Email Id</th>
+                    <th style="text-align:center">Mobile No.</th>
+                    <th style="text-align:center">Message</th>
+
+                    <th style="text-align:center">Date & Time</th>
+                    <th style="text-align:center">Manage Record</th>
+
+
+
+                </tr>
+                @{
+                    int sno = 1;
+                    foreach (ContactMaster tc in Model)
+                    {
+                                <tr style="height:40px;">
+                                    <td style="text-align:center">@sno</td>
+                                    <td style="text-align:center">@tc.Contact_Id</td>
+                                    <td>@tc.Name</td>
+                                    <td style="text-align:center">@tc.FName </td>
+
+                                    <td>@tc.EmailId</td>
+                                    <td style="text-align:center">@tc.MobNo</td>
+                                    <td>@tc.Message</td>
+                                    <td style="text-align:center">@tc.Date_Time</td>
+                                    <td style="text-align:center">
+                                        <a href="@Url.Action("DeleteContactCustomer","Admin" ,new { conid = tc.Contact_Id })"><i class="fa fa-trash" aria-hidden="true" style="color:saddlebrown;font-size:25px;"></i></a>
+                                    </td>                                  
+                                </tr>
+                        sno++;
+                    }
+                }
+            </table>
+            <br />
+
+        </div>
+
+    </div>
+</div>

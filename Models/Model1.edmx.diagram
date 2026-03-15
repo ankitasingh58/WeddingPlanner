@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="131e6de7624d4d4a933037521ef10363" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="Wedding_PlannerModel.AmentiesMaster" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.AreaMaster" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.BookingMaster" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.CityMaster" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.ComplaintsMaster" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.ContactMaster" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.EnquiryMaster" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.EventMaster" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.FeedBackMaster" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.LoginMaster" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.UserMaster" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_AmentiesMaster_EventMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_AreaMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_UserMaster_AreaMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_BookingMaster_UserMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_UserMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_ComplaintsMaster_UserMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_FeedBackMaster_UserMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="Wedding_PlannerModel.FK_LoginMaster_UserMaster" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.SendEmailMaster" Width="1.5" PointX="3.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,225 @@
+﻿
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $(".app").on({
+            mouseenter: function () {
+                $(".app").css("background", "#ae8b0c");
+            },
+            mouseleave: function () {
+                $(".app").css("background", "rgba(2,2,2, 0.3)");
+            }
+        });
+    });
+    $(function () {
+        $("#getNew1").click(function () {
+            window.location.href = "DestiManage";
+        });
+        $("#getNew2").click(function () {
+            window.location.href = "DestiInvetation";
+        });
+        $("#getNew3").click(function () {
+            window.location.href = "BridalCare";
+        });
+        $("#getNew4").click(function () {
+            window.location.href = "VenueSel";
+        });
+        $("#getNew5").click(function () {
+            window.location.href = "Batchlor";
+        });
+        $("#getNew6").click(function () {
+            window.location.href = "MenuPlan";
+        });
+        $("#getNew7").click(function () {
+            window.location.href = "ArtistDetial";
+        });
+        $("#getNew8").click(function () {
+            window.location.href = "SangeetDetail";
+        });
+        $("#getNew9").click(function () {
+            window.location.href = "WeddingStationary";
+        });
+        $("#getNew10").click(function () {
+            window.location.href = "Photography";
+        });
+        $("#getNew11").click(function () {
+            window.location.href = "GuestAccom";
+        });
+        $("#getNew12").click(function () {
+            window.location.href = "ThemeConcept";
+        });
+        $("#getNew13").click(function () {
+            window.location.href = "VendorDetails";
+        });
+        $("#getNew14").click(function () {
+            window.location.href = "EntertainmentSol";
+        });
+        $("#getNew15").click(function () {
+            window.location.href = "LightSound";
+        });
+        $("#getNew16").click(function () {
+            window.location.href = "Wedsits";
+        });
+    });
+</script>
+<div class="container-fluid">
+
+<div class="row main-service">
+    
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 con">
+        <h3 class="display-3 animated slideInDown text-center" style="color:black;text-shadow:1px 2px 3px brown;   opacity:0.5;margin-top:50px;">Services</h3>
+        <p align="center">
+            Wedding Planning entails a wide range of services and it can be quite tedious for couples to identify credible vendors for each service. As leading wedding planners and event organizers in Dubai, our large network of reliable professionals helps us bring the best to our clients for their wedding celebrations.
+            <br><br>
+            Our team of wedding professionals assist you from beginning to end to ensure all your demands and wishes are fulfilled so that you can host one of the finest celebrations for your wedding day that your guests will cherish for a long time to come.
+            <br><br>
+            Below are the range of services we offer.
+        </p>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+
+<!-- images-->
+
+<div class="row" style="margin-top:50px;">
+    <!--image with hover effect code start-->
+
+    <div class="team">
+        <div class="team-area">
+            <div class="single-team">
+                <img src="~/Content/images/dm.jpeg" alt="">
+                <div class="info">
+                    <h3>Destination Management</h3>
+                    <input type="button" style="cursor:pointer" id="getNew1" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+
+            <div class="single-team">
+                <img src="~/Content/images/card.jpg" alt="">
+                <div class="info">
+                    <h3>Designer Invitations</h3>
+                    <input type="button" style="cursor:pointer" id="getNew2" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/bridal.jpg" alt="">
+                <div class="info">
+                    <h3>Bridal Care</h3>
+                    <input type="button" style="cursor:pointer" id="getNew3"class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/venue.jpg" alt="">
+                <div class="info">
+                    <h3>Venue Selection</h3>
+
+                    <input type="button" id="getNew4" style="cursor:pointer" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/batchlor.jpg" alt="">
+                <div class="info">
+                    <h3>Bachelor Parties</h3>
+                    <input type="button" style="cursor:pointer" id="getNew5" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+            <div class="single-team">
+                <img src="~/Content/images/food.jpg" alt="">
+                <h3 style="color:white">Menu Planning & Testing</h3>
+                <div class="info">
+                    <h3>Menu Planning & Testing</h3>
+                    <input type="button" style="cursor:pointer"  id="getNew6" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/art.png" alt="">
+                <div class="info">
+                    <h3>Artist Management</h3>
+                    <input type="button" style="cursor:pointer" id="getNew7" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+
+
+            <div class="single-team">
+                <img src="~/Content/images/dance.jpg" alt="">
+                <div class="info">
+                    <h3>Sangeet Skit Show Direction</h3>
+                    <input type="button" style="cursor:pointer" id="getNew8" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/stationery.jpg" alt="">
+                <div class="info">
+                    <h3>Wedding Stationary</h3>
+                    <input type="button" style="cursor:pointer" id="getNew9" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/san2.jpeg" alt="">
+                <div class="info">
+                    <h3>Photography Video & Still</h3>
+                    <input type="button" style="cursor:pointer" id="getNew10" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+            <div class="single-team">
+                <img src="~/Content/images/guest3.jpg" alt="">
+                <div class="info">
+                    <h3>Guest Accommodation</h3>
+                    <input type="button" style="cursor:pointer" id="getNew11" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+            <div class="single-team">
+                <img src="~/Content/images/theme2.jpg" alt="">
+                <div class="info">
+                    <h3>Themes Concept & Decor</h3>
+                    <input type="button" style="cursor:pointer" id="getNew12" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/vendor.jpg" alt="">
+                <div class="info">
+                    <h3>Vendor Cordination</h3>
+                    <input type="button" style="cursor:pointer" id="getNew13" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+            <div class="single-team">
+                <img src="~/Content/images/enter.jpeg" alt="">
+                <div class="info">
+                    <h3>Entertainment Solutions</h3>
+                    <input type="button" style="cursor:pointer" id="getNew14" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+            <div class="single-team">
+                <img src="~/Content/images/light.jpeg" alt="">
+                <div class="info">
+                    <h3>Light & Sound Production</h3>
+                    <input type="button" style="cursor:pointer" id="getNew15" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+            <div class="single-team">
+                <img src="~/Content/images/wedsit.jpg" alt="">
+                <div class="info">
+                    <h3>Wedsites</h3>
+                    <input type="button" style="cursor:pointer" id="getNew16" class="app" value="View Details &#x2192;">
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!--image with hover effect code end-->
+</div>
+</div>

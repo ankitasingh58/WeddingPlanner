@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Wedding_PlannerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AmentiesMaster">
+    <Key>
+      <PropertyRef Name="EventName" />
+    </Key>
+    <Property Name="EventName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Laun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Hall" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Music" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Parlour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Catering" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EventMaster" Relationship="Self.FK_AmentiesMaster_EventMaster" FromRole="AmentiesMaster" ToRole="EventMaster" />
+  </EntityType>
+  <EntityType Name="AreaMaster">
+    <Key>
+      <PropertyRef Name="Area_Id" />
+    </Key>
+    <Property Name="Area_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Area_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Related_City_Id" Type="Int32" />
+    <NavigationProperty Name="CityMaster" Relationship="Self.FK_AreaMaster_CityMaster" FromRole="AreaMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="UserMasters" Relationship="Self.FK_UserMaster_AreaMaster" FromRole="AreaMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="BookingMaster">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookedBy" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="EventList" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="BookDate" Type="DateTime" Precision="3" />
+    <Property Name="GuestCount" Type="Int32" />
+    <Property Name="Hall" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lawn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Music" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Parlour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Catering" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="Double" />
+    <NavigationProperty Name="UserMaster" Relationship="Self.FK_BookingMaster_UserMaster1" FromRole="BookingMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="City_Id" />
+    </Key>
+    <Property Name="City_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AreaMasters" Relationship="Self.FK_AreaMaster_CityMaster" FromRole="CityMaster" ToRole="AreaMaster" />
+    <NavigationProperty Name="UserMasters" Relationship="Self.FK_UserMaster_CityMaster" FromRole="CityMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="ComplaintsMaster">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ComplainBy" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserMaster" Relationship="Self.FK_ComplaintsMaster_UserMaster" FromRole="ComplaintsMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="ContactMaster">
+    <Key>
+      <PropertyRef Name="Contact_Id" />
+    </Key>
+    <Property Name="Contact_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="MobNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EnquiryMaster">
+    <Key>
+      <PropertyRef Name="Enquiry_Id" />
+    </Key>
+    <Property Name="Enquiry_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Enquiry_Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Enquiry_DateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="EventMaster">
+    <Key>
+      <PropertyRef Name="EventName" />
+    </Key>
+    <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AmentiesMaster" Relationship="Self.FK_AmentiesMaster_EventMaster" FromRole="EventMaster" ToRole="AmentiesMaster" />
+  </EntityType>
+  <EntityType Name="FeedBackMaster">
+    <Key>
+      <PropertyRef Name="FeedBackId" />
+    </Key>
+    <Property Name="FeedBackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Rating" Type="Int32" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="FeedBackBy" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserMaster" Relationship="Self.FK_FeedBackMaster_UserMaster" FromRole="FeedBackMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="LoginMaster">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="User_Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="User_Status" Type="Boolean" />
+    <Property Name="Login_Count" Type="Int32" />
+    <Property Name="Last_Login_Time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserMaster" Relationship="Self.FK_LoginMaster_UserMaster" FromRole="LoginMaster" ToRole="UserMaster" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="EmailId" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Related_City_Id" Type="Int32" />
+    <Property Name="Related_Area_Id" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Picture_File_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime_Of_Reg" Type="DateTime" Precision="3" />
+    <Property Name="Is_Del" Type="Boolean" />
+    <NavigationProperty Name="AreaMaster" Relationship="Self.FK_UserMaster_AreaMaster" FromRole="UserMaster" ToRole="AreaMaster" />
+    <NavigationProperty Name="BookingMasters" Relationship="Self.FK_BookingMaster_UserMaster1" FromRole="UserMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="CityMaster" Relationship="Self.FK_UserMaster_CityMaster" FromRole="UserMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="ComplaintsMasters" Relationship="Self.FK_ComplaintsMaster_UserMaster" FromRole="UserMaster" ToRole="ComplaintsMaster" />
+    <NavigationProperty Name="FeedBackMasters" Relationship="Self.FK_FeedBackMaster_UserMaster" FromRole="UserMaster" ToRole="FeedBackMaster" />
+    <NavigationProperty Name="LoginMaster" Relationship="Self.FK_LoginMaster_UserMaster" FromRole="UserMaster" ToRole="LoginMaster" />
+  </EntityType>
+  <Association Name="FK_AmentiesMaster_EventMaster">
+    <End Role="EventMaster" Type="Self.EventMaster" Multiplicity="1" />
+    <End Role="AmentiesMaster" Type="Self.AmentiesMaster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="EventMaster">
+        <PropertyRef Name="EventName" />
+      </Principal>
+      <Dependent Role="AmentiesMaster">
+        <PropertyRef Name="EventName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AreaMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="AreaMaster" Type="Self.AreaMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="City_Id" />
+      </Principal>
+      <Dependent Role="AreaMaster">
+        <PropertyRef Name="Related_City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaster_AreaMaster">
+    <End Role="AreaMaster" Type="Self.AreaMaster" Multiplicity="0..1" />
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AreaMaster">
+        <PropertyRef Name="Area_Id" />
+      </Principal>
+      <Dependent Role="UserMaster">
+        <PropertyRef Name="Related_Area_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_UserMaster1">
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="BookedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="City_Id" />
+      </Principal>
+      <Dependent Role="UserMaster">
+        <PropertyRef Name="Related_City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComplaintsMaster_UserMaster">
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
+    <End Role="ComplaintsMaster" Type="Self.ComplaintsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="ComplaintsMaster">
+        <PropertyRef Name="ComplainBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeedBackMaster_UserMaster">
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
+    <End Role="FeedBackMaster" Type="Self.FeedBackMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="FeedBackMaster">
+        <PropertyRef Name="FeedBackBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginMaster_UserMaster">
+    <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+    <End Role="LoginMaster" Type="Self.LoginMaster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserMaster">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="LoginMaster">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Wedding_PlannerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AmentiesMasters" EntityType="Self.AmentiesMaster" />
+    <EntitySet Name="AreaMasters" EntityType="Self.AreaMaster" />
+    <EntitySet Name="BookingMasters" EntityType="Self.BookingMaster" />
+    <EntitySet Name="CityMasters" EntityType="Self.CityMaster" />
+    <EntitySet Name="ComplaintsMasters" EntityType="Self.ComplaintsMaster" />
+    <EntitySet Name="ContactMasters" EntityType="Self.ContactMaster" />
+    <EntitySet Name="EnquiryMasters" EntityType="Self.EnquiryMaster" />
+    <EntitySet Name="EventMasters" EntityType="Self.EventMaster" />
+    <EntitySet Name="FeedBackMasters" EntityType="Self.FeedBackMaster" />
+    <EntitySet Name="LoginMasters" EntityType="Self.LoginMaster" />
+    <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+    <AssociationSet Name="FK_AmentiesMaster_EventMaster" Association="Self.FK_AmentiesMaster_EventMaster">
+      <End Role="EventMaster" EntitySet="EventMasters" />
+      <End Role="AmentiesMaster" EntitySet="AmentiesMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AreaMaster_CityMaster" Association="Self.FK_AreaMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="AreaMaster" EntitySet="AreaMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaster_AreaMaster" Association="Self.FK_UserMaster_AreaMaster">
+      <End Role="AreaMaster" EntitySet="AreaMasters" />
+      <End Role="UserMaster" EntitySet="UserMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_UserMaster1" Association="Self.FK_BookingMaster_UserMaster1">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaster_CityMaster" Association="Self.FK_UserMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="UserMaster" EntitySet="UserMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComplaintsMaster_UserMaster" Association="Self.FK_ComplaintsMaster_UserMaster">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="ComplaintsMaster" EntitySet="ComplaintsMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeedBackMaster_UserMaster" Association="Self.FK_FeedBackMaster_UserMaster">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="FeedBackMaster" EntitySet="FeedBackMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginMaster_UserMaster" Association="Self.FK_LoginMaster_UserMaster">
+      <End Role="UserMaster" EntitySet="UserMasters" />
+      <End Role="LoginMaster" EntitySet="LoginMasters" />
+    </AssociationSet>
+    <EntitySet Name="SendEmailMasters" EntityType="Wedding_PlannerModel.SendEmailMaster" />
+  </EntityContainer>
+  <EntityType Name="SendEmailMaster">
+    <Key>
+      <PropertyRef Name="Send_Id" />
+    </Key>
+    <Property Name="Send_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailId" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Name="Send_On" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

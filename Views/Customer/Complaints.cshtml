@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Complaints";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+
+        if ('@ViewBag.msg' != '')
+        //Start: to clear controls
+        {
+            var msg = '@ViewBag.msg';
+            var x = msg.indexOf('Complaints');
+            if (x >= 0) {
+                $("#SubjectName").val("");
+                $("#Message").val("");
+            }
+        }
+         // end: to clear controls
+
+        var x = $("#precomplain").text().trim();
+        if (x.length > 0)
+            $("#precomplain").fadeIn(150).delay(3500).fadeOut(2500);
+
+
+    });
+</script>
+
+<style>
+    .btn-grad {
+        background-image: linear-gradient(to right, #c4732fdd 0%, #eee 51%,#f2aed3 100%);
+        margin: 10px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 5px;
+        display: block;
+        cursor: pointer;
+    }
+
+        .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+
+    .form-control {
+        border: 1px solid grey;
+    }
+
+        .form-control:hover {
+            border: 1px solid saddlebrown;
+        }
+</style>
+<script>
+   
+</script>
+
+<div class="container" style="background-image:url('/Content/images/compain.jpg'); background-size:cover; background-repeat:no-repeat;">
+
+    <div class="row" style="min-height: 500px;">
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-8" style="background-color: #ffffffd2; padding-top: 5px; margin-top:60px; margin-bottom: 70px; border-radius: 30px; box-shadow: 1px 2px 8px 1px saddlebrown; ">
+            <h2 style="color: #be5e19; text-align: center; font-family: Script MT;" ><i class="fa fa-comment"></i>&nbsp; &nbsp;Complain</h2>
+            <p id="precomplain" align="center" class="h5 text-center " style="min-height: 20px; width: 100%; padding: 2px; padding-top: 10px; font-size: 20px; font-weight: bold; color: #ae0707;display:none;">
+                @ViewBag.msg
+            </p>
+            @using (Html.BeginForm("Complaints", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="row" style="padding:25px 15px 10px 10px;">
+                    <div class="col-sm-12">
+                        @Html.TextBox("SubjectName", null, new { placeholder = "Complain Title", @class = "form-control" })
+                    </div>
+
+
+                    <div class="col-sm-12">
+                        @Html.TextArea("Message", null, new { placeholder = "Complains here...", @class = "form-control", row = "3", col = "5", style = "min-height:100px;" })
+                    </div>
+
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <input type="submit" class="btn-grad form-control" value="Complain Now" style="border-radius:20px; font-weight:bold;" id="btncomplain"/>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            }
+        </div>
+
+
+        <div class="col-sm-2"></div>
+
+    </div>
+</div>

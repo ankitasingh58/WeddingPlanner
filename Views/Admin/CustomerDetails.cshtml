@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "CustomerDetails";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@using Wedding_Planner.Models;
+@model IEnumerable<UserMaster>
+
+<script>
+    $(document).ready(function () {
+        var x = $("#userDetail").text().trim();
+        if (x.length > 0)
+            $("#userDetail").fadeIn(100).delay(2500).fadeOut(1500);
+    });
+</script>
+<style>
+    table tr:hover {
+        background-color: lightgray;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+       
+        <div class="col-sm-12">
+            <h1 align="center" style="color:saddlebrown;font-weight:bold;font-family:'Script MT' "> Customers Records</h1>
+            <hr style="border-top: 1px solid saddlebrown " />
+            <p id="userDetail" align="center" class="h5 text-center " style="min-height: 20px; width: 100%; padding: 2px; padding-top: 10px; font-size: 20px; font-weight: bold; color: #ae0707;display:none;">@TempData["Message"]</p>
+
+            <table border="1" width="100%">
+                <tr style="background-color:saddlebrown; color:white;text-align:center; height:45px;" align="center">
+                    <th style="text-align:center">SNO</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">&nbsp;&nbsp;Gender&nbsp;&nbsp;</th>
+                    <th style="text-align:center">Email</th>
+                    <th style="text-align:center">Mobile No</th>
+                    <th style="text-align:center">&nbsp;&nbsp;City&nbsp;&nbsp;</th>
+                    <th style="text-align:center">&nbsp;&nbsp;Area&nbsp;&nbsp;</th> 
+                    <th style="text-align:center">Address</th> 
+                    <th style="text-align:center">Date & Time</th>
+                    <th style="text-align:center">Manage Record</th>
+
+
+
+                </tr>
+                @{
+                    int sno = 1;
+                    foreach (UserMaster tc in Model)
+                    {
+                                <tr style="height:30px;">
+                                    <td style="text-align:center">@sno</td>
+                                    <td style="text-align:center">@tc.Name</td>
+                                    <td style="text-align:center">@tc.Gender</td>
+                                    <td style="text-align:center">@tc.EmailId</td>
+                                    <td style="text-align:center">@tc.MobileNo</td>
+                                    <td style="text-align:center">@tc.Related_City_Id</td>
+                                    <td style="text-align:center">@tc.Related_Area_Id</td>
+                                    <td style="text-align:center">@tc.Address</td>
+                                    <td style="text-align:center">@tc.DateTime_Of_Reg</td>
+
+                                    
+                                    <td style="text-align:center">
+                                        <a href="@Url.Action("DeleteCustomerRecords","Admin" , new { emailid = tc.EmailId })"><i class="fa fa-trash" aria-hidden="true" style="color:saddlebrown;font-size:25px;"></i></a>
+
+                                    </td>
+                                   
+                                </tr>
+                        sno++;
+                    }
+                }
+            </table>
+            <br />
+        
+        </div>
+        
+    </div>
+</div>
