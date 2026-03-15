@@ -1,0 +1,393 @@
+﻿
+@{
+    ViewBag.Title = "MyBooking";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        /*---------------------------------
+             TO VALIDATE PAST DATE
+        -------------------------------*/
+        $(function () {
+            var dtToday = new Date();
+            var day = dtToday.getDate();
+            var month = dtToday.getMonth()+1;
+            var year = dtToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+            $('#BookDate').attr('min', maxDate);
+
+        });
+
+
+
+        /*---------------------------------
+          END VALIDATE PAST DATE
+        -------------------------------*/
+
+        $(".clk").attr("disabled",true);
+
+        $("#EventList").change(function () {
+            
+            var hall, laun, music, tent, parlour, catering, hallamount = 0, lawnamount = 0, musicamount = 0, tentamount = 0, parlouramount = 0, cateringtotalammount = 0, totalamount = 0;
+            $(".clk").attr("disabled", false);
+            $("#Hall").prop("checked", false);
+            $("#Lawn").prop("checked", false);
+            $("#Tent").prop("checked", false);
+            $("#Music").prop("checked", false);
+            $("#Parlour").prop("checked", false);
+            $("#Catering").prop("checked", false);
+            
+            $("#amentiAmount").text(totalamount);
+
+        
+            var eventname = $(this).val();
+            $.getJSON("/Customer/GetAmentiUsingAJAX", { EventName: eventname }, function (data) {
+               
+                hall = data.Hall;
+                laun = data.Laun;
+                music = data.Music;
+                tent = data.Tent;
+                parlour = data.Parlour;
+                catering = data.Catering;
+                $("#hall").text("Hall Rs. " + hall);
+                $("#laun").text("Lawn Rs. " + laun);
+                $("#music").text("Music Rs. " + music);
+                $("#tent").text("Tent Rs. " + tent);
+                $("#parlour").text("Parlour Rs. " + parlour);
+                $("#catering").text("Catering Rs. " + catering);
+
+               /* $("#Hall").val(hall);
+                $("#Lawn").val(laun);
+                $("#Music").val(music);
+                $("#Tent").val(tent);
+                $("#Parlour").val(parlour);
+                $("#Catering").val(catering);*/
+            });          
+             $("#Hall").change(function () {
+                if (this.checked) {
+                    totalamount = totalamount + parseInt(hall);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+                else {
+                    $(".error1").remove();
+                    totalamount = totalamount - parseInt(hall);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+             });
+             $("#Lawn").change(function () {
+                if (this.checked) {
+
+                    totalamount = totalamount + parseInt(laun);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+                else {
+                    $(".error2").remove();
+
+                    totalamount = totalamount - parseInt(laun);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+             });
+             $("#Music").change(function () {
+                if (this.checked) {
+
+                    totalamount = totalamount + parseInt(music);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+                else {
+                    $(".error3").remove();
+
+                    totalamount = totalamount - parseInt(music);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+             });
+             $("#Tent").change(function () {
+                if (this.checked) {
+
+                    totalamount = totalamount + parseInt(tent);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+                else {
+                    $(".error4").remove();
+
+                    totalamount = totalamount - parseInt(tent);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+             });
+             $("#Parlour").change(function () {
+                if (this.checked) {
+
+                    totalamount = totalamount + parseInt(parlour);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+                else {
+                    $(".error5").remove();
+
+                    totalamount = totalamount - parseInt(parlour);
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+             });
+             $("#Catering").change(function () {
+                if (this.checked) {
+
+                     gc = $("#GuestCount").val();
+                    cateringtotalammount = gc * parseInt(catering);
+                    totalamount = totalamount + cateringtotalammount;
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+
+                }
+                else {
+                    $(".error6").remove();
+
+                    totalamount = totalamount - cateringtotalammount;
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);
+                }
+             });
+            //GuestCount
+            $("#GuestCount").keyup(function () {
+                if ($("#Catering").prop("checked", true)) {
+                    var gc = $("#GuestCount").val();
+                    totalamount = totalamount - cateringtotalammount;
+                    cateringtotalammount = 0;
+                    cateringtotalammount = gc * parseInt(catering)
+                    totalamount = totalamount + cateringtotalammount;
+                    $("#amentiAmount").text(totalamount);
+                    $("#TotalAmount").val(totalamount);                  
+                }
+            });
+        });
+        // for guest list count to update catering value
+       
+
+
+       
+
+        // to clear all value
+        if ('@ViewBag.Msg' != '')
+        //Start: to clear controls
+        {
+            var msg = '@ViewBag.Msg';
+            var x = msg.indexOf('Success');
+            if (x >= 0) {
+                $("#EventList").val("");
+                $("#BookDate").val("");
+                $("#GuestCount").val("");               
+                $("#amentiAmount").val("");
+                $("#TotalAmount").val("");
+                $(".clk").prop("checked", false)
+               
+            }
+        }
+        // end: to clear controls
+
+        // validate booking form
+        $("#btnbook").click(function () {
+
+            var status = true;
+            var eventlist, bookdate;
+            eventlist = $("#EventList").val().trim();
+            bookdate = $("#BookDate").val().trim();
+           
+            $(".error").remove();
+            // TO validate event list
+            if (eventlist.length == 0) {
+                $("#EventList").after("<span  class='error'>Plese choose any event </span>");
+                status = false;
+            }
+            // to validate date
+            if (bookdate.length == 0) {
+                $("#BookDate").after("<span class='error'>Please choose event date</span>");
+                status = false;
+            }
+            return status;
+        });
+
+        //  for catering checked check or not
+
+        $("#Catering").click(function () {
+            if ((this).checked)
+            {
+                $("#GuestCount").attr("disabled", false);
+
+            }
+            else
+            {
+                $("#GuestCount").attr("disabled", true);
+            }
+        });
+    
+
+        // for showing msg
+        var x = $("#prebook").text().trim();
+        if (x.length > 0)
+            $("#prebook").fadeIn(150).delay(3500).fadeOut(2500);
+
+
+    });
+
+
+
+</script>
+<style>
+    .form-control:hover {
+        border: 1px solid white;
+        color: white;
+        background-color: rgba(2,2,2,0.7);
+    }
+
+    .form-control {
+        background-color: rgba(2,2,2,0.5);
+        color: white;
+        border: 1px solid white;
+    }
+
+    .clk {
+        height: 15px;
+        width: 15px;
+        background-color: black;
+    }
+
+    .btn-grad {
+        background-image: linear-gradient(to right, #603813 0%, #b29f94 51%, #603813 100%);
+        height: 40px;
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+        border: none;
+    }
+
+        .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+        .error{
+            color:red;
+        }
+</style>
+<div class="container-fluid" style="background-image: url('/Content/images/book.jpeg'); background-repeat: no-repeat,no-repeat; background-size: cover;">
+
+    <div class="row">
+        <div class="col-sm-12" style="font-family:'Script MT';color:#ae0707;font-size:40px;margin-top:10px;" align="center">Perfect Match Booking Form</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6">
+            <div style="background: rgba(252,252,249,0.7); min-height:473px; margin-top:10px;margin-bottom:10px;">
+                <p id="prebook" align="center" class="h5 text-center " style="min-height: 20px; width: 100%; padding: 2px; padding-top: 10px; font-size: 20px; font-weight: bold; color: #ae0707; display: none;">
+                    @ViewBag.Msg
+                </p>
+                @using (Html.BeginForm("MyBooking", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row" style="padding-top:30px;padding-left:15px;padding-right:15px;">
+                        <div class="col-sm-4" style="padding-top: 10px;font-weight:bold">
+                            <span style="color:black;font-size:14px;">CHOOSE EVENTS</span>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DropDownList("EventList", null, "Select Events", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:15px;padding-right:15px;">
+                        <div class="col-sm-4" style="padding-top: 10px;font-weight:bold">
+                            <span style="color: black; font-size: 14px;">BOOK DATE</span>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBox("BookDate", null, new { placeholder = "Booking date here", @class = "form-control", type = "date" })
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-left:15px;padding-right:15px;">
+                        <div class="col-sm-4" style="padding-top: 10px;font-weight:bold">
+                            <span style="color: black; font-size: 14px;">AMENTIES </span>
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.CheckBox("Hall", new { @class = "clk"}) &nbsp; <span id="hall" style="color: black; font-size: 15px;font-weight:bold;color:saddlebrown">Hall </span>
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.CheckBox("Lawn", new { @class = "clk" })&nbsp; <span id="laun" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Lawn </span>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:15px;padding-right:15px;">
+                        <div class="col-sm-4" style="padding-top: 10px;font-weight:bold">
+
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.CheckBox("Music", new { @class = "clk" })&nbsp; <span id="music" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Music</span>
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.CheckBox("Tent", new { @class = "clk" })&nbsp; <span id="tent" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Tent </span>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:15px;padding-right:15px;">
+                        <div class="col-sm-4" style="padding-top: 10px;font-weight:bold">
+
+                        </div>
+                        <div class="col-sm-4" style="padding-top:9px;">
+                            @Html.CheckBox("Parlour", new { @class = "clk"})&nbsp; <span id="parlour" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Parlour</span>
+                        </div>
+                        <div class="col-sm-4" style="padding-top:9px;">
+                            @Html.CheckBox("Catering", new { @class = "clk" })&nbsp; <span id="catering" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Catering </span>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left: 15px; padding-right: 15px; padding-top:20px;">
+                        <div class="col-sm-4" style="padding-top: 10px;font-weight:bold">
+                            <span style="color: black; font-size: 14px;">TOTAL GUEST </span>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBox("GuestCount", 1, new { placeholder = "Number of Guest", @class = "form-control", title="Check catering", type = "number", disabled="disabled"})
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:15px;padding-right:15px;padding-top:5px;">
+                        <div class="col-sm-4" style="padding-top: 10px;font-weight:bold">
+                            <span style="color: black; font-size: 14px;">TOTAL AMOUNT </span>
+                        </div>
+                        <p id="para"></p>
+                        <div class="col-sm-8">
+                            <p id="amentiAmount" class="form-control" placeholder="Total Amount" style="text-align:center"></p>
+                            @Html.TextBox("TotalAmount", null, new { placeholder = "Total Amount", @class = "form-control", style = "display:none;" })
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+
+                            <input type="submit" id="btnbook" value="Book Now" class="btn-grad" style="border-radius:20px 20px 20px 20px;cursor:pointer" />
+
+                        </div>
+                        <div class="col-sm-3"></div>
+
+                    </div>
+
+
+
+                }
+            </div>
+        </div>
+        <div class="col-sm-5"></div>
+    </div>
+</div>
+

@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+<link href="~/Content/sliderStyle/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/sliderStyle/js/bootstrap.min.js"></script>
+<style>
+
+    .img {
+        width: 330px;
+        height: 330px;
+        background-color: #f0f0f0;
+        transition: transform 2s;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+        .img:hover {
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            overflow: hidden;
+            transform: scale(1.1);
+            z-index: 2;
+        }
+
+    .imgho {
+        overflow: hidden;
+    }
+
+        .imgho img {
+            width: 330px;
+            height: 330px;
+            background-color: #f0f0f0;
+            transition: transform .5s;
+        }
+
+        .imgho:hover img {
+            transform: scale(1.04);
+        }
+
+    .inner {
+        overflow: hidden;
+    }
+
+        .inner img {
+            transition: transform 0.9s;
+        }
+
+        .inner:hover img {
+            transform: scale(1.04);
+        }
+</style>
+<!-- Start Banner -->
+
+
+<div class="container-fluid">
+
+
+    <!-- slider-->
+    <div class="row" style="margin-top:40px;">
+
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="~/Content/images/slides/slider4.jpeg" />
+                    <div class="carousel-caption">
+                        <p style="font-size: 30px; color: whitesmoke">Look Better then Feel Better</p>
+                        <p>Awesome wedding planner</p>
+                    </div>
+                   
+                </div>
+
+                <div class="item ">
+                    <img src="~/Content/images/slides/slider3a.jpeg" />
+                    <div class="carousel-caption">
+                        <p style="font-size: 30px; color: whitesmoke">The greatest planner for wedding</p>
+                        <p style="font-size:20px; color: whitesmoke" >Things to keep mind while planning a amazing wedding</p>
+                    </div>
+                </div>
+
+
+                <div class="item">
+
+                    <img src="~/Content/images/slides/slider6.png" />
+                    <div class="carousel-caption">
+                        <p style="font-size: 30px; color: whitesmoke">Look Better then Feel Better</p>
+                        <p style="font-size: 20px; color: whitesmoke ">Awesome wedding planner</p>
+                    </div>
+
+                </div>
+
+                <div class="item">
+                    <img src="~/Content/images/slides/slider8.jpeg" />
+                    <div class="carousel-caption">
+                        <p style="font-size: 30px; color: whitesmoke">Look Better then Feel Better</p>
+                        <p>Awesome wedding planner</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row" style="margin-top:2px;background:white;min-height:380px;">
+        <div class="col-sm-6">
+            <h2 class="text-center" style="font-family: 'Script MT'; text-align: center; color: #cfa065;margin-top:18px;">Destination Wedding Planners</h2>
+            <p style="text-align: justify; padding: 20px;">
+                Celebrations such as weddings can be very overwhelming, especially when you have to plan events with guests attending from different parts of the world. If you are clueless about where to begin and the right steps to take, our professional team of experienced wedding planners will assist you every step of the way. Our award-winning team in the UAE has been in the wedding planning business for over a decade which also includes destination wedding planning. Vivaah Celebrations is one of the most renowned and prestigious wedding planners in the UAE. The highly experienced team of wedding planners is skilled and trained to handle all aspects of the wedding in a seamless and efficient manner.
+                <br /><br />
+                Whether you choose to host an intimate wedding celebration or a large destination wedding in Dubai, our team of professional wedding planners work tirelessly to deliver your memorable wedding celebration.
+            </p>
+
+        </div>
+        <div class="col-sm-6 inner ">
+            <img src="../Content/images/g1.jpg" width="100%" height="380px" style="margin-top:25px;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <br />
+            <p style="text-align: center; color: saddlebrown; font-size:19px; font-family:'Script MT'">
+                Wedding Planning entails a wide range of services and it can be quite tedious for couples to identify credible vendors for each service. As leading wedding planners and event organizers in india, our large network of reliable professionals helps us bring the best<br /> to our clients for their wedding celebrations.
+                <br /><br />
+                Our team of wedding professionals assist you from beginning to end to ensure all your demands and wishes are fulfilled so that you can host one of the <br> finest celebrations for your wedding day that your guests will cherish for a long time to come.
+            </p>
+
+        </div>
+    </div>
+    <div class="row " style="margin-top:40px;">
+        <div class="col-sm-3 imgho">
+            <img src="../Content/images/conP4.jpg" class="img-thumbnail img-responsive img" /><br /><br />
+        </div>
+        <div class="col-sm-3 imgho">
+            <img src="../Content/images/n2.jpg" class="img-thumbnail img-responsive img" /><br /><br />
+        </div>
+        <div class="col-sm-3 imgho">
+            <img src="../Content/images/g33.jpg" class="img-thumbnail img-responsive img" /><br /><br />
+        </div>
+        <div class="col-sm-3 imgho">
+            <img src="../Content/images/g44.jpg" class="img-thumbnail img-responsive img" /><br /><br />
+        </div>
+
+    </div>
+
+    <!-- Blogs starts -->
+    <div class="blog_header">
+
+        <h1 style="text-align:center;font-family:'Script MT';margin-bottom:20px;margin-top:35px;padding-top:20px;font-size:35px;">BLOG</h1>
+        <hr class="web_article_hr">
+    </div>
+    <div class="jumbo_container_blog my_blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <a href="#"><button type="button" class="btn btn-danger">August 5,2023</button></a><br><br>
+                    <div class="mr-4 blog_sub_heading">
+                        <a href="#" style="text-decoration:none"><h5 style="font-weight:bold;color:saddlebrown">Wedding Planner seromeny of all organisation with higher level</h5></a><br>
+                        <p>
+                            wedding planner menhadi sermony off all enents are famoiused in that's level' Our team of wedding professionals assist you from beginning to end to ensure all your demands […]
+                        </p>
+                    </div>
+                    <div class="blog-bottom-box">
+                        <div style="display:inline-block">
+                            <img style="height:20px; width: 20px;
+                                    margin: 0 4px 4px 6px;" src="~/Content/images/icons/admin2.png" alt="admin-image">
+                        </div>
+                        <div style="display:inline-block">
+                            <small>admin</small>
+                        </div>
+                        <a href="#"><small style="padding-left: 1rem;">Read More...</small></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <a href="#"><button type="button" class="btn btn-danger">December 26,2023</button></a><br><br>
+                    <div class="mr-4 blog_sub_heading">
+                        <a href="#" style="text-decoration:none"><h5 style="font-weight: bold; color: saddlebrown">Delhi , Gurgav Famous 2023</h5></a><br>
+                    </div>
+                    <div class="blog-bottom-box">
+                        <div style="display:inline-block">
+                            <img style="height:20px; width: 20px;
+                                margin: 0 4px 4px 6px;" src="~/Content/images/icons/admin2.png" alt="admin-image">
+                        </div>
+                        <div style="display:inline-block">
+                            <small>admin</small>
+                        </div>
+                        <a href="#"><small style="padding-left: 1rem;">Read More...</small></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <a href="#"><button type="button" class="btn btn-danger">Sepetember 28,2023</button></a><br><br>
+                    <div class="blog_sub_heading">
+                        <a href="#" style="text-decoration:none"><h5 style="font-weight: bold; color: saddlebrown">Wedding Planner Have Great Opportunities in Shahapur</h5></a><br>
+                        <p>
+                            Wedding Planning entails a wide range of services and it can be quite tedious for couples to identify credible vendors for each service.  […]
+                        </p>
+                        <div class="blog-bottom-box">
+                            <div style="display:inline-block">
+                                <img style="height:20px; width: 20px;
+                                    margin: 0 4px 4px 6px;" src="~/Content/images/icons/admin2.png" alt="admin-image">
+                            </div>
+                            <div style="display:inline-block">
+                                <small>admin</small>
+                            </div>
+                            <a href="#"><small style="padding-left: 1rem;">Read More...</small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blogs ends -->
+
+</div>

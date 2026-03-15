@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "FeedBack";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+
+<style>
+    .btn-grad {
+        background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
+        margin: 10px;
+       
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+        cursor:pointer;
+    }
+
+        .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .form-control
+        {
+            margin-bottom:20px;
+        }
+</style>
+<script>
+    $(document).ready(function () {
+
+        if ('@ViewBag.Msg' != '')
+        //Start: to clear controls
+        {
+            var msg = '@ViewBag.Msg';
+            var x = msg.indexOf('Thanks');
+            if (x >= 0) {
+                $("#Subject").val("");
+                $("#Message").val("");
+            }
+        }
+         // end: to clear controls
+
+        
+
+         // to manage star color on selection
+        $(".starrating").css("cursor", "pointer");
+        $(".starrating").click(function () {
+            $(".starrating").css("color", "white");
+            var star = $(this).attr("data-star");
+            for (x = 0; x < star; x++)
+            {
+                $(".starrating").eq(x).css("color", "yellow");
+            } 
+            $("#sprating").text(star);
+        });
+        // to save feedback using ajax
+        $("#btnfeedback").click(function () {
+            // validate...
+            var sub = $("#Subject").val().trim();
+            var star = $("#sprating").text().trim();
+            var msg = $("#Message").val().trim();
+            var obj = { Subject: sub, Rating: star, Message: msg };
+            $.getJSON("/Customer/SaveFeedBack", obj, function (data) {
+                $("#prefeed").text(data);
+                var x = $("#prefeed").text().trim();
+                if (x.length > 0)
+                    $("#prefeed").fadeIn(150).delay(3500).fadeOut(2500);
+
+            });
+        });
+      
+    });
+</script>
+ <div class="container">
+ 
+    <div class="row" style="margin-top:28px;margin-bottom:65px; max-height:408px;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4" style="background:black; padding:0px;">
+            <img src="~/Content/images/n2.jpg" style="background-size:cover; width:100%;min-height:443px;" />
+        </div>
+        <div class="col-sm-4" style=" background-image: linear-gradient( 178deg, #caab96 7.5%, rgba(153,247,250,1) 93.1% ); padding-top:10px;">
+            <h2 style="color: #411fee; text-align: center; font-family: Script MT; font-size:35px;">FeedBack</h2>
+            <p style="color:#411fee;text-align:center;font-family:Script MT;font-size:20px;"> Please give your kind words for our productivity...</p>
+            <hr />
+            <p id="prefeed" align="center" class="h5 text-center " style="min-height:20px;width:100%;padding:2px;color:saddlebrown;display:none;">
+                @ViewBag.Msg
+            </p>
+           
+                <div class="row" style="padding-top:10px;">
+                    <div class="col-sm-12">
+                        @Html.TextBox("Subject", null, new { placeholder = "Title of your feedback", @class = "form-control" })
+                    </div>
+                    <div  class="row">
+                        <div class="col-sm-12" align="center">
+                            &emsp;&emsp;
+                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="1"></i>&emsp;&emsp;
+                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="2"></i>&emsp;&emsp;
+                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="3"></i>&emsp;&emsp;
+                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="4"></i>&emsp;&emsp;
+                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="5"></i>
+
+                            <span id="sprating" style="display:none">0</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" style="padding-top:10px;"> 
+                        @Html.TextArea("Message", null, new { placeholder = "Feedback message...", @class = "form-control", style = "min-height:70px" })
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="button" class="btn-grad form-control" value="Save" style="border-radius:20px; font-weight:bold;" id="btnfeedback" />
+                    </div>
+                </div>
+        </div>
+
+
+        <div class="col-sm-2"></div>
+    </div>
+</div>

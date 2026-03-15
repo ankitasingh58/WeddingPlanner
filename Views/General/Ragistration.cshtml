@@ -1,0 +1,447 @@
+﻿
+@{
+    ViewBag.Title = "Ragistration";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+
+        $("#Related_City_Id").change(function () {
+
+            var cid = $(this).val();
+            $.getJSON("/General/GetAreaUsingAJAX", { CityId: cid }, function (data) {
+                var items = "<option value=''>Select Area</option>";
+                $.each(data, function (index, area) {
+                    items = items + "<option value='" + area.Area_Id + "'>" + area.Area_Name + "</option>";
+                });
+                $("#Related_Area_Id").html(items);
+
+
+            });
+
+        });
+        $("#ImgReferesh").click(function () {
+            $.getJSON("/General/GetNewCaptchaImage", null, function (data) {
+                $("#Imgcaptcha").attr("src", data);
+
+            });
+        });
+        if ('@ViewBag.Message' != '')
+        //Start: to clear controls
+        {
+            var msg = '@ViewBag.Message';
+            var x = msg.indexOf('success');
+            if (x >= 0) {
+                $("#Name").val("");
+                $("#EmailId").val("");
+                $("#MobileNo").val("");
+                $("#Related_City_Id").val("");
+                $("#Address").val("");
+                $("#CaptchaCode").val("");
+
+            }
+        }
+         // end: to clear controls
+    });
+    $(document).ready(function () {
+
+        var x = $("#preres").text().trim();
+        if (x.length > 0)
+            $("#preres").fadeIn(150).delay(3500).fadeOut(2500);
+
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        /*                         Validate  Registration                                          */
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        $("#btnreg").click(function () {
+
+            var status = true;
+
+            var name, email, phone, city, area, Address, Password, ConfPassword, Captcha;
+            name = $("#Name").val().trim();
+            email = $("#EmailId").val().trim();
+            phone = $("#MobileNo").val().trim();
+            city = $("#Related_City_Id").val().trim();
+            area = $("#Related_Area_Id").val().trim();
+            Address = $("#Address").val().trim();
+            Password = $("#Pass").val().trim();
+            ConfPassword = $("#ConfPass").val().trim();
+            Captcha = $("#CaptchaCode").val().trim();
+
+
+            //To clear erroror message
+
+            $(".error").remove();
+
+            // TO validate name
+            if (name.length == 0) {
+                $("#Name").after("<span class='error'>Please enter your name</span>");
+                status = false;
+            }
+            else if (name.length < 3) {
+                $("#Name").after("<span class='error'>Please enter a valid name</span>");
+                status = false;
+            }
+
+            /*--------------------------
+               TO VALIDATE GENDER
+           -----------------------------*/
+
+
+
+
+            /*---------------------
+              validate email start
+             --------------------------*/
+
+            if (email.length == 0) {
+                $("#EmailId").after("<span class='error'>Please enter your email id</span>");
+                status = false;
+            }
+            else if (email.length != 0) {
+                var ch;
+                ch = email.substring(email.lastIndexOf('.')).toUpperCase();
+                if (!(ch == '.COM' || ch == '.IN')) {
+                    $("#EmailId").after("<span class='error'>Please enter valid email id</span>");
+                    status = false;
+                }
+            }
+
+
+
+            /*---------------------------------
+                    TO validate Mobile number
+           --------------------------------*/
+            if (phone.length == 0) {
+                $("#MobileNo").after("<span class='error'>Please enter your mobile no</span>");
+                status = false;
+            }
+            else if (phone.length != 10) {
+                $("#MobileNo").after("<span class='error'>Mobile number must have 10 digite</span>");
+                status = false;
+            }
+            else {
+                var digit = parseInt(phone.charAt(0));
+                if (!(digit >= 6 && digit <= 9)) {
+                    $("#MobileNo").after("<span class='error'>please enter a valide mobile no</span>");
+                    status = false;
+                }
+            }
+
+
+
+            /*-----------------------------
+                    To validate City
+            --------------------------------------*/
+            if (city.length == 0) {
+                $("#Related_City_Id").after("<span  class='error'>Plese choose your city </span>");
+                status = false;
+            }
+
+
+            /*------------------------------------
+                          To validate Area
+           --------------------------------------*/
+            if (area.length == 0) {
+                $("#Related_Area_Id").after("<span  class='error'>Plese choose your area </span>");
+                status = false;
+            }
+
+
+
+
+
+            /*------------------------------------
+               To validate Address
+            --------------------------------------*/
+            if (Address.length == 0) {
+                $("#Address").after("<span class='error'>Please enter your address</span>");
+                status = false;
+            }
+            else if (Address.length < 10) {
+                $("#Address").after("<span class='error'>Please enter a complete address.</span>");
+                status = false;
+            }
+
+
+            /*------------------------------------
+                 To validate Profile
+            --------------------------------------*/
+
+
+
+            /*------------------------------------
+                To validate Password
+            --------------------------------------*/
+            if (Password.length == 0) {
+                $("#Pass").after("<span class='error'>please enter password</span>");
+                status = false;
+            }
+            else if (!(Password.length >= 8)) {
+                $("#Pass").after("<span class='error'>password must have 8 characters</span>");
+                status = false;
+            }
+            else if (Password.length >= 8) {
+                var dd = 0, cc = 0, sp = 0; CC = 0;
+                for (i = 0; i < Password.length; i++) {
+                    ch = Password.charCodeAt(i);
+                    if (ch >= 65 && ch <= 90) {
+                        CC++;
+                    }
+                    if (ch >= 97 && ch <= 122) {
+                        cc++;
+                    }
+                    if (ch >= 48 && ch <= 57) {
+                        dd++;
+                    }
+                    if ((ch >= 32 && ch <= 47) || (ch >= 58 && ch <= 64) || (ch >= 91 && ch <= 96) || (ch >= 123 && ch <= 126)) {
+                        sp++;
+                    }
+                }
+                if (dd == 0) {
+                    $("#Pass").after("<span class='error'><br>Password contains digits</span>");
+                    status = false;
+                }
+                else if (CC == 0) {
+                    $("#Pass").after("<span class='error'><br>Password contains Upper Character.</span>");
+                    status = false;
+                }
+                else if (cc == 0) {
+                    $("#Pass").after("<span class='error'><br>Password contains lower character.</span>");
+                    status = false;
+                }
+                else if (sp == 0) {
+                    $("#Pass").after("<span class='error'><br>Password contains a special character.</span>");
+                    status = false;
+
+                }
+            }
+
+            /*-------------------------------
+             TO VALIDATE CONFIRM PASSWORD
+            --------------------------------- */
+            if (ConfPassword.length == 0) {
+                $("#ConfPass").after("<span class='error'>please enter confirm password</span>");
+                status = false;
+            }
+
+            else if (Password != ConfPassword) {
+                $("#ConfPass").after("<span class='error'>password and confirm password must be same.</span>");
+                status = false;
+            }
+
+
+            /*--------------------------
+               TO VALIDATE CAPTCHACODE
+           -----------------------------*/
+
+            if (Captcha.length == 0) {
+                $("#CaptchaCode").after("<span class='error'>Please enter captcha</span>");
+                status = false;
+            }
+
+
+            return status;
+        });
+    });
+    @*
+    $(document).ready(function () {
+        if ('@ViewBag.Message' != '') {
+            var msg = '@ViewBag';
+            var x = msg.indexOf('success');
+             // to clear controls
+
+            if (x >= 0) {
+                $("#Name").val('');
+                $("#EmailId").val("");
+                $("#MobileNo").val("");
+                $("#Related_City_Id").val('');
+                $("#Related_Area_Id").val('');
+                $("#Address").val("");
+                $("#CaptchaCode").val("");
+            }
+
+            // end to clear controls
+            var cls = x >= 0?'bg-success':'bg-danger';
+            var str = " <p id='pmsg' class='"+cls+" text-black' style='min-height:40px;font-size:18px;padding:5px 20px;'><i class='fa fa-circle-info text-warning'></i>@ViewBag.Message</p>";
+            $("#dvform h2").after(str);
+            setInterval(function () {
+                $("#pmsg").fadeout(2000);
+            },5000);
+        }
+    });*@
+</script>
+<style>
+    .form-control:hover {
+        border: 1px solid saddlebrown;
+       
+        background-color:white;
+        
+    }
+
+    .form-control {
+        background-color: white;
+       
+    }
+
+    .btn-grad {
+        background-image: linear-gradient(to right, #DD5E89 0%, #F7BB97 51%, #DD5E89 100%);
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        height: 43px;
+        width: 240px;
+        border: none;
+    }
+
+        .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+            border: none;
+        }
+        ::placeholder
+        {
+            color:white;
+        }
+
+
+
+
+</style>
+
+
+<div class="container-fluid" >
+        <div class="row" style="margin-top:80px;">
+            <div class="col-sm-1"></div>    
+            
+            <div class="col-sm-10 " style="background: url('../Content/images/res5.jpg');min-height:550px;background-repeat:no-repeat;background-size:cover;width:100%;border-radius:5px 15px 5px 26px; box-shadow:0 4px 8px 0 rgba(0,0,0,3),0 6px 20px 0 rgba(0,0,0,0.55);">
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div id="dvform" align="center" class="col-sm-6" style="background: rgba(252,252,249,0); min-height: 550px; border-radius: 15px 15px 5px 25px; margin: 0px; ">
+                        <h2 class="animated fadeInDown " style="color: saddlebrown; font-family:Script MT; text-align: center; font-weight: bold; margin-bottom: 35px; margin-top: 20px;font-size:40px; ">Join Us</h2>
+                        <p id="preres" align="center" class="h5 text-center " style="min-height:20px;width:100%;padding:2px;display:none;color:saddlebrown;">
+                            @ViewBag.Message
+                        </p>
+                        @using (Html.BeginForm("Ragistration", "General", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    @Html.TextBox("Name", null, new { placeholder = "Name", @class = "form-control  " })
+                                </div><br /><br />
+                                <div class="col-sm-6">
+                                    <span class="form-control">
+                                        @Html.RadioButton("Gender", "Male", true, new { style = "width:15px;height:15px" })&nbsp; &nbsp;Male&emsp;
+                                        @Html.RadioButton("Gender", "Female", false, new { style = "width:15px;height:15px" })&nbsp; &nbsp;Female
+                                    </span>
+                                </div><br /><br />
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-sm-6">
+                                    @Html.TextBox("EmailId", null, new { placeholder = "Email id", @class = "form-control", type = "email" })
+                                </div><br /><br />
+                                <div class="col-sm-6">
+                                    @Html.TextBox("MobileNo", null, new { placeholder = "Mobile No", @class = "form-control", type = "number" })
+                                </div>
+                                <br /><br />
+                            </div>
+                            <div class="row" style="margin-top:9px;">
+                                <div class="col-sm-6">
+
+                                    @Html.DropDownList("Related_City_Id", null, "Select City", new { @class = "form-control" })
+                                </div><br /><br />
+                                  
+                                <div class="col-sm-6">
+                                    <select id="Related_Area_Id" name="Related_Area_Id" class="form-control">
+                                        <option value="">Select Area</option>
+                                    </select>
+                                </div>
+                                <br /><br />
+                            </div>
+                            <div class="row" style="margin-top:9px;">
+                                <div class="col-sm-6">
+                                    @Html.TextArea("Address", new { @class = "form-control", placeholder = "address", rows = "3" })
+                                </div>
+                                <br /><br /><br /><br />
+                                <div class="col-sm-6">
+                                    <span class="form-control" align="left" style="height:85px;"id="userpic" >
+                                        Profile Pic
+                                        <input type="file"  id="UsserPic" name="UserPic" />
+                                    </span>
+                                </div>
+                                <br /><br /><br /><br />
+                            </div>
+                            <div class="row" style="margin-top:9px;">
+                                <div class="col-sm-6">
+                                    @Html.Password("Pass", null, new { placeholder = "Password", @class = "form-control" })
+
+                                </div><br /><br />
+                                <div class="col-sm-6">
+                                    @Html.Password("ConfPass", null, new { @class = "form-control", placeholder = "Confirm Password" })
+                                </div><br /><br />
+                            </div>
+                            <div class="row" style="margin-top:9px;">
+                                @*
+                       <div class="col-sm-6">
+                      <span>
+                          <img id="Imgcaptcha" height="50px" width="20px" src="~/Content/@ViewBag.Img" class="form-control" />
+                      </span>
+                      <span>
+                          <img id="ImgReferesh" width="40px" height="40px" src="~/Content/Images/icons/refresh-icon-black-on-white-260nw-604044635.jpg" style="cursor:pointer" title="Referesh Code" />
+
+                      </span>
+                  </div>
+                <div class="col-sm-6">
+                      @Html.TextBox("CaptchaCode", null, new { @class = "form-control", placeholder = "Enter Captcha" })
+                  </div>
+
+                                *@
+                                <div class="col-sm-6">
+                                    <span class="form-control" style="padding-top:0px;padding-bottom:0px">
+                                        <img id="Imgcaptcha" height="35px" width="170px" src="~/Content/@ViewBag.Img" />
+
+                                        <img id="ImgReferesh" width="40px" height="30px" src="~/Content/images/icons/ram.png" style="cursor:pointer" title="Referesh Code" />
+
+                                    </span>
+                                </div><br /><br />
+                                <div class="col-sm-6">
+                                    @Html.TextBox("CaptchaCode", null, new { @class = "form-control", placeholder = "Enter Captcha" })
+                                </div><br /><br />
+                            </div>
+                            <div class="row" style="margin-top:30px;">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-6">
+                                    <input type="submit" id="btnreg" value="Register Now" class="btn-grad" style="border-radius:20px 20px 20px 20px;cursor:pointer" />
+
+                                </div>
+                                <div class="col-sm-3"></div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-4">
+                                    <input type="reset" value="Clear Now" class="btn btn-block " style="background-color: rgba(2,2,2,0);color:maroon;font-size:17px; font-weight:bold;text-decoration:none" /><br />
+                                </div>
+                                <div class="col-sm-4"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                </div>
+
+               
+           
+            <div class="col-sm-1"></div>
+        </div>
+
+    </div>
+<!-- new code run-->

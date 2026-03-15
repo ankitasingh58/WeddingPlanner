@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "AdminDashBoard";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<style>
+    .navbox {
+        margin: 30px;
+        min-height: 80px;
+        background-color: #68392a;
+        color: white;
+        padding: 5%;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 3px 3px 4px 3px #191414;
+        border-radius: 5px;
+    }
+
+        .navbox:hover {
+            background-color: #92460e;
+            color: white;
+            text-decoration: none;
+        }
+
+    #st {
+        color: white;
+    }
+</style>
+<!--Main Body Start  -->
+<div class="container-fluid" style="background-image:url('/Content/images/adminboard.jpg'); background-size:cover; background-repeat:no-repeat;">
+    <h2 align="center" style="color: #68392a; font-weight: bold; margin-top: 0px; padding-top: 10px;">Admin Dashboard</h2>
+    <div class="row" style="min-height:437px;margin-top:10px;">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+
+            <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
+                <a href="CustomerDetails" class="col-sm-3 navbox"><i class="fa fa-user" style="font-size:30px;" aria-hidden="true"></i><h6>My Customer Details</h6></a>
+                <a href="ComplainDetails" class="col-sm-3 navbox"><i class="fa fa-book" style="font-size:30px;" aria-hidden="true"></i><h6>All Complaints Details</h6></a>
+                <a href="FeedBackDetails" class="col-sm-3 navbox"><i class="fa fa-comments-o" style="font-size:30px;" aria-hidden="true"></i><h6>All FeedBacks Details </h6></a>
+
+            </div>
+
+
+
+            <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
+
+
+                <a href="BookingDetails" class="col-sm-3 navbox"><i class="fa fa-comments" style="font-size:30px;" aria-hidden="true"></i><h6>Customer Booking</h6></a>
+                <a href="EnquiryDetails" class="col-sm-3 navbox"><i class="fa fa-question" style="font-size:30px;" aria-hidden="true"></i><h6>Enquiery Details</h6></a>
+                <a href="ContactsDetails" class="col-sm-3 navbox"><i class="fa fa-phone" style="font-size:30px;" aria-hidden="true"></i><h6>Contact Details</h6></a>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <!--Main Body End  -->
+</div>

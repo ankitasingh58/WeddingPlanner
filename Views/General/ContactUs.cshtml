@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+<script>
+   
+    // validate contact us
+    $(document).ready(function () {
+        $("#btnsave").click(function () {
+           
+            //var correct = /^[A-Za-z]+$/;
+            var status = true;
+            var name;
+            name = $("#txtname").val().trim();
+            fname = $("#txtfname").val().trim();
+            email = $("#txtemail").val().trim();
+            mob = $("#txtnumber").val().trim();
+            area = $("#txtarea").val().trim();
+            $(".error").remove();
+            /*======validate name========*/
+            if (name.length == 0)
+            {
+                $("#txtname").after("<span class='error'>Please enter your name</span>");
+                status = false;
+            }
+            else if (name.length < 3) {
+                $("#txtname").after("<span class='error'>Please enter a valid name</span>");
+                status = false;
+            }
+            else if (!(first.match(correct))) {
+                $("#txtname").after("<span class='error'>Please enter a correct name</span>");
+                status = false;
+            }
+            
+            if (fname.length == 0) {
+                $("#txtfname").after("<span class='error'>Please enter father name</span>");
+                status = false;
+            }
+            else if (fname.length < 3) {
+                $("#txtfname").after("<span class='error'>Please enter a valid name</span>");
+                status = false;
+            }
+            
+            if (email.length == 0)
+            {
+                $("#txtemail").after("<span class='error'>Please enter your email id</span>");
+                status = false;
+            }
+            
+            if (mob.length == 0) {
+                $("#txtnumber").after("<span class='error'>Please enter your mobile no</span>");
+                status = false;
+            }
+            else if (mob.length != 10) {
+                $("#txtnumber").after("<span class='error'>mobile number must have 10 digite</span>");
+                status = false;
+            }
+            
+            if (area.length == 0)
+            {
+                $("#txtarea").after("<span class='error'>Please enter some text </span>");
+                status = false;
+            }
+            return status;
+        });
+    });
+    $(document).ready(function () {
+
+        var x = $("#precon").text().trim();
+        if (x.length > 0)
+            $("#precon").fadeIn(150).delay(3500).fadeOut(2500);
+
+    });
+   
+</script>
+<style>
+    .error{
+        color:red;
+    }
+</style>
+
+    <div class="container-fluid">
+        <div class="row"><br />
+        <div class="col-sm-12 phon"
+            style="min-height: 350px; margin-top: 30px; padding: 0px; background-image: url('/Content/images/g91.jpeg'); background-repeat: no-repeat; min-width: 100%; background-size: cover ">
+            <div class="col-sm-12" style="background: rgba(2,2,2,0.4); min-height: 350px;min-width:100% ">
+                <h3 class="display-3 animated slideInDown text-center" style="color:white;text-shadow:2px 5px 2px maroon;padding-top:120px;opacity:0.5">Contact US</h3>
+            </div>
+        </div>
+        </div>
+        <div class="row" style="margin-top:25px;">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10" style="margin-top:20px;margin-bottom:20px;">
+                <p align="center">Vivaah Celebrations have been delivering memorable wedding celebrations for couples around the world. Whether it be weddings in the UAE or any other international destination wedding, we’ve done it all. </p>
+                <p align="center" >With numerous weddings successfully planned within the Middle East, such as Dubai, Ajman, Fujairah, Ras Al Khaimah, Bahrain, Oman, we’ve also taken weddings internationally to global destinations such as Malta, Monaco, Thailand, Italy, Switzerland, Spain and France. </p>
+                <p align="center">We continue to keep exploring new destinations for upcoming wedding celebrations.</p>
+                <p align="center">
+                    While our expertise is wedding planning and management, we love to talk to our clients and seek their suggestions and inputs. After all, weddings are a once-in-a-lifetime event and should be extraordinary. Our team of experienced destination wedding planners are here to hear you.
+                </p>
+                <p align="center">
+                    Please contact us via social media or email us for your free consultation.
+                </p>
+            </div><div class="col-sm-1"></div>
+        </div>
+        <div class="container">
+            <div class="row" style="min-height:200px;">
+                <div class="col-sm-4" style=" padding:20px;">
+                    <div class="row ">
+                        <div class="col-sm-2">
+                            <i class="fa fa-map-marker" style="color:#be9559;font-size:39px;"></i>
+                        </div>
+                        <div class="col-sm-10" style="padding-left:15px;">
+                            <h3 style="font-size:px;">Address</h3>
+                            <span style="font-size:20px;">Shree Ram <br />Ramayan Mela Parisar,<br />Sitapur Chitakoot</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="padding:20px;">
+                    <div class="row">
+                        <div class="col-sm-2 ">
+                            <i class="fa fa-phone" style="color:#be9559;font-size:39px;"></i>
+                        </div>
+                        <div class="col-sm-10 " style="padding-left:15px;">
+                            <h3 style="font-size:px;">Phone</h3>
+                            <span style="font-size:20px; "><b>Telephone</b>&nbsp;&nbsp;+91 7307695953</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="padding:20px;">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <i class="fa fa-envelope" style="color:#be9559;font-size:39px;"></i>
+                        </div>
+                        <div class="col-sm-10 " style="padding-left:15px;">
+                            <h3>Email</h3>
+                            <span style="font-size:20px; ">prajapatiseema1278@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="min-height:380px;">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10" style="background:#fafafa;border-top:2px solid #be9559;border-radius:20px;padding-top:15px;">
+                <h3 class="text-center animated fadeInUp">Write to US !</h3><br>
+                <p id="precon" align="center" class="h5 text-center " style="min-height:20px;width:100%;padding:2px;display:none;color:saddlebrown;">
+                    @ViewBag.Message
+                </p>
+                <form action="ContactUs" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" name="Name" id="txtname" placeholder="Enter Name" class="form-control" /><br />
+                            <input type="text" name="FName" id="txtfname" placeholder="Enter your Father Name" class="form-control" /><br />
+
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="email" name="EmailId" id="txtemail" placeholder="Enter your email" class="form-control" /><br />
+                            <input type="number" name="MobNo" id="txtnumber" placeholder="Enter your mobileno" class="form-control datetimepicker-input" /><br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <textarea placeholder="Tell me Us" name="Message" rows="4" class="form-control" id="txtarea"></textarea>
+                        </div>
+                    </div><br>
+                    <div class="row" style="padding:10px">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <center>
+                                <input type="submit" id="btnsave" class="form-control btn" value="Send Message" style="text-align:center; background:#be9559; color:white; font-size:20px;" />
+                            </center>
+                        </div><div class="col-sm-4"></div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+           
+            <div class="col-sm-12" style="height:300px; background:">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.7875196121263!2d82.98122151432901!3d25.277732234632882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e322343f12603%3A0x29b4c02490dd0039!2sGovernment%20Girls%20Polytechnic%2CVaranasi!5e0!3m2!1sen!2sin!4v1671782111202!5m2!1sen!2sin" width="100%" height="300" style="border:0; padding:10px 0px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+           
+        </div>
+      
+</div>
