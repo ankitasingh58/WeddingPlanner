@@ -33,7 +33,7 @@
         $(".clk").attr("disabled",true);
 
         $("#EventList").change(function () {
-            
+
             var hall, laun, music, tent, parlour, catering, hallamount = 0, lawnamount = 0, musicamount = 0, tentamount = 0, parlouramount = 0, cateringtotalammount = 0, totalamount = 0;
             $(".clk").attr("disabled", false);
             $("#Hall").prop("checked", false);
@@ -42,13 +42,13 @@
             $("#Music").prop("checked", false);
             $("#Parlour").prop("checked", false);
             $("#Catering").prop("checked", false);
-            
+
             $("#amentiAmount").text(totalamount);
 
-        
+
             var eventname = $(this).val();
             $.getJSON("/Customer/GetAmentiUsingAJAX", { EventName: eventname }, function (data) {
-               
+
                 hall = data.Hall;
                 laun = data.Laun;
                 music = data.Music;
@@ -68,7 +68,7 @@
                 $("#Tent").val(tent);
                 $("#Parlour").val(parlour);
                 $("#Catering").val(catering);*/
-            });          
+            });
              $("#Hall").change(function () {
                 if (this.checked) {
                     totalamount = totalamount + parseInt(hall);
@@ -169,15 +169,15 @@
                     cateringtotalammount = gc * parseInt(catering)
                     totalamount = totalamount + cateringtotalammount;
                     $("#amentiAmount").text(totalamount);
-                    $("#TotalAmount").val(totalamount);                  
+                    $("#TotalAmount").val(totalamount);
                 }
             });
         });
         // for guest list count to update catering value
-       
 
 
-       
+
+
 
         // to clear all value
         if ('@ViewBag.Msg' != '')
@@ -188,11 +188,11 @@
             if (x >= 0) {
                 $("#EventList").val("");
                 $("#BookDate").val("");
-                $("#GuestCount").val("");               
+                $("#GuestCount").val("");
                 $("#amentiAmount").val("");
                 $("#TotalAmount").val("");
                 $(".clk").prop("checked", false)
-               
+
             }
         }
         // end: to clear controls
@@ -204,7 +204,7 @@
             var eventlist, bookdate;
             eventlist = $("#EventList").val().trim();
             bookdate = $("#BookDate").val().trim();
-           
+
             $(".error").remove();
             // TO validate event list
             if (eventlist.length == 0) {
@@ -232,7 +232,7 @@
                 $("#GuestCount").attr("disabled", true);
             }
         });
-    
+
 
         // for showing msg
         var x = $("#prebook").text().trim();
@@ -284,9 +284,10 @@
             color: #fff;
             text-decoration: none;
         }
-        .error{
-            color:red;
-        }
+
+    .error {
+        color: red;
+    }
 </style>
 <div class="container-fluid" style="background-image: url('/Content/images/book.jpeg'); background-repeat: no-repeat,no-repeat; background-size: cover;">
 
@@ -324,7 +325,7 @@
                             <span style="color: black; font-size: 14px;">AMENTIES </span>
                         </div>
                         <div class="col-sm-4">
-                            @Html.CheckBox("Hall", new { @class = "clk"}) &nbsp; <span id="hall" style="color: black; font-size: 15px;font-weight:bold;color:saddlebrown">Hall </span>
+                            @Html.CheckBox("Hall", new { @class = "clk" }) &nbsp; <span id="hall" style="color: black; font-size: 15px;font-weight:bold;color:saddlebrown">Hall </span>
                         </div>
                         <div class="col-sm-4">
                             @Html.CheckBox("Lawn", new { @class = "clk" })&nbsp; <span id="laun" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Lawn </span>
@@ -346,7 +347,7 @@
 
                         </div>
                         <div class="col-sm-4" style="padding-top:9px;">
-                            @Html.CheckBox("Parlour", new { @class = "clk"})&nbsp; <span id="parlour" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Parlour</span>
+                            @Html.CheckBox("Parlour", new { @class = "clk" })&nbsp; <span id="parlour" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Parlour</span>
                         </div>
                         <div class="col-sm-4" style="padding-top:9px;">
                             @Html.CheckBox("Catering", new { @class = "clk" })&nbsp; <span id="catering" style="color: black; font-size: 15px; font-weight: bold; color: saddlebrown">Catering </span>
@@ -357,7 +358,7 @@
                             <span style="color: black; font-size: 14px;">TOTAL GUEST </span>
                         </div>
                         <div class="col-sm-8">
-                            @Html.TextBox("GuestCount", 1, new { placeholder = "Number of Guest", @class = "form-control", title="Check catering", type = "number", disabled="disabled"})
+                            @Html.TextBox("GuestCount", 1, new { placeholder = "Number of Guest", @class = "form-control", title = "Check catering", type = "number", disabled = "disabled" })
                         </div>
                     </div>
                     <div class="row" style="padding-left:15px;padding-right:15px;padding-top:5px;">
@@ -391,3 +392,4 @@
     </div>
 </div>
 
+@Html.Partial("_Chatbot")

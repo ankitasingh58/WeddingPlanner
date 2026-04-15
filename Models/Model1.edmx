@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Wedding_PlannerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AmentiesMaster">
+        <EntityType Name="AmentiesMasters">
           <Key>
             <PropertyRef Name="EventName" />
           </Key>
@@ -17,7 +17,7 @@
           <Property Name="Parlour" Type="varchar" MaxLength="50" />
           <Property Name="Catering" Type="varchar" MaxLength="70" />
         </EntityType>
-        <EntityType Name="AreaMaster">
+        <EntityType Name="AreaMasters">
           <Key>
             <PropertyRef Name="Area_Id" />
           </Key>
@@ -25,7 +25,7 @@
           <Property Name="Area_Name" Type="varchar" MaxLength="50" />
           <Property Name="Related_City_Id" Type="int" />
         </EntityType>
-        <EntityType Name="BookingMaster">
+        <EntityType Name="BookingMasters">
           <Key>
             <PropertyRef Name="BookingId" />
           </Key>
@@ -42,14 +42,23 @@
           <Property Name="Catering" Type="varchar" MaxLength="50" />
           <Property Name="TotalAmount" Type="float" />
         </EntityType>
-        <EntityType Name="CityMaster">
+        <EntityType Name="ChatMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserMessage" Type="nvarchar(max)" />
+          <Property Name="BotReply" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CityMasters">
           <Key>
             <PropertyRef Name="City_Id" />
           </Key>
           <Property Name="City_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="City_Name" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="ComplaintsMaster">
+        <EntityType Name="ComplaintsMasters">
           <Key>
             <PropertyRef Name="SubjectId" />
           </Key>
@@ -59,7 +68,7 @@
           <Property Name="ComplainBy" Type="varchar" MaxLength="120" />
           <Property Name="Date_Time" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="ContactMaster">
+        <EntityType Name="ContactMasters">
           <Key>
             <PropertyRef Name="Contact_Id" />
           </Key>
@@ -71,7 +80,7 @@
           <Property Name="Message" Type="varchar" MaxLength="500" />
           <Property Name="Date_Time" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="EnquiryMaster">
+        <EntityType Name="EnquiryMasters">
           <Key>
             <PropertyRef Name="Enquiry_Id" />
           </Key>
@@ -82,14 +91,14 @@
           <Property Name="Enquiry_Message" Type="varchar(max)" />
           <Property Name="Enquiry_DateTime" Type="datetime" />
         </EntityType>
-        <EntityType Name="EventMaster">
+        <EntityType Name="EventMasters">
           <Key>
             <PropertyRef Name="EventName" />
           </Key>
           <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventName" Type="varchar" MaxLength="70" Nullable="false" />
         </EntityType>
-        <EntityType Name="FeedBackMaster">
+        <EntityType Name="FeedBackMasters">
           <Key>
             <PropertyRef Name="FeedBackId" />
           </Key>
@@ -100,7 +109,7 @@
           <Property Name="FeedBackBy" Type="varchar" MaxLength="120" />
           <Property Name="Date_Time" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="LoginMaster">
+        <EntityType Name="LoginMasters">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
@@ -111,7 +120,7 @@
           <Property Name="Login_Count" Type="int" />
           <Property Name="Last_Login_Time" Type="datetime" />
         </EntityType>
-        <EntityType Name="SendEmailMaster">
+        <EntityType Name="SendEmailMasters">
           <Key>
             <PropertyRef Name="Send_Id" />
           </Key>
@@ -121,7 +130,7 @@
           <Property Name="Message" Type="varchar" MaxLength="550" />
           <Property Name="Send_On" Type="datetime" />
         </EntityType>
-        <EntityType Name="UserMaster">
+        <EntityType Name="UserMasters">
           <Key>
             <PropertyRef Name="EmailId" />
           </Key>
@@ -137,145 +146,146 @@
           <Property Name="Is_Del" Type="bit" />
         </EntityType>
         <Association Name="FK_AmentiesMaster_EventMaster">
-          <End Role="EventMaster" Type="Self.EventMaster" Multiplicity="1" />
-          <End Role="AmentiesMaster" Type="Self.AmentiesMaster" Multiplicity="0..1" />
+          <End Role="EventMasters" Type="Self.EventMasters" Multiplicity="1" />
+          <End Role="AmentiesMasters" Type="Self.AmentiesMasters" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="EventMaster">
+            <Principal Role="EventMasters">
               <PropertyRef Name="EventName" />
             </Principal>
-            <Dependent Role="AmentiesMaster">
+            <Dependent Role="AmentiesMasters">
               <PropertyRef Name="EventName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AreaMaster_CityMaster">
-          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
-          <End Role="AreaMaster" Type="Self.AreaMaster" Multiplicity="*" />
+          <End Role="CityMasters" Type="Self.CityMasters" Multiplicity="0..1" />
+          <End Role="AreaMasters" Type="Self.AreaMasters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CityMaster">
+            <Principal Role="CityMasters">
               <PropertyRef Name="City_Id" />
             </Principal>
-            <Dependent Role="AreaMaster">
+            <Dependent Role="AreaMasters">
               <PropertyRef Name="Related_City_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookingMaster_UserMaster1">
-          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
-          <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+          <End Role="UserMasters" Type="Self.UserMasters" Multiplicity="0..1" />
+          <End Role="BookingMasters" Type="Self.BookingMasters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserMaster">
+            <Principal Role="UserMasters">
               <PropertyRef Name="EmailId" />
             </Principal>
-            <Dependent Role="BookingMaster">
+            <Dependent Role="BookingMasters">
               <PropertyRef Name="BookedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComplaintsMaster_UserMaster">
-          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
-          <End Role="ComplaintsMaster" Type="Self.ComplaintsMaster" Multiplicity="*" />
+          <End Role="UserMasters" Type="Self.UserMasters" Multiplicity="0..1" />
+          <End Role="ComplaintsMasters" Type="Self.ComplaintsMasters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserMaster">
+            <Principal Role="UserMasters">
               <PropertyRef Name="EmailId" />
             </Principal>
-            <Dependent Role="ComplaintsMaster">
+            <Dependent Role="ComplaintsMasters">
               <PropertyRef Name="ComplainBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FeedBackMaster_UserMaster">
-          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
-          <End Role="FeedBackMaster" Type="Self.FeedBackMaster" Multiplicity="*" />
+          <End Role="UserMasters" Type="Self.UserMasters" Multiplicity="0..1" />
+          <End Role="FeedBackMasters" Type="Self.FeedBackMasters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserMaster">
+            <Principal Role="UserMasters">
               <PropertyRef Name="EmailId" />
             </Principal>
-            <Dependent Role="FeedBackMaster">
+            <Dependent Role="FeedBackMasters">
               <PropertyRef Name="FeedBackBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LoginMaster_UserMaster">
-          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
-          <End Role="LoginMaster" Type="Self.LoginMaster" Multiplicity="0..1" />
+          <End Role="UserMasters" Type="Self.UserMasters" Multiplicity="1" />
+          <End Role="LoginMasters" Type="Self.LoginMasters" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="UserMaster">
+            <Principal Role="UserMasters">
               <PropertyRef Name="EmailId" />
             </Principal>
-            <Dependent Role="LoginMaster">
+            <Dependent Role="LoginMasters">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserMaster_AreaMaster">
-          <End Role="AreaMaster" Type="Self.AreaMaster" Multiplicity="0..1" />
-          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <End Role="AreaMasters" Type="Self.AreaMasters" Multiplicity="0..1" />
+          <End Role="UserMasters" Type="Self.UserMasters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AreaMaster">
+            <Principal Role="AreaMasters">
               <PropertyRef Name="Area_Id" />
             </Principal>
-            <Dependent Role="UserMaster">
+            <Dependent Role="UserMasters">
               <PropertyRef Name="Related_Area_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserMaster_CityMaster">
-          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
-          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <End Role="CityMasters" Type="Self.CityMasters" Multiplicity="0..1" />
+          <End Role="UserMasters" Type="Self.UserMasters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CityMaster">
+            <Principal Role="CityMasters">
               <PropertyRef Name="City_Id" />
             </Principal>
-            <Dependent Role="UserMaster">
+            <Dependent Role="UserMasters">
               <PropertyRef Name="Related_City_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Wedding_PlannerModelStoreContainer">
-          <EntitySet Name="AmentiesMaster" EntityType="Self.AmentiesMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AreaMaster" EntityType="Self.AreaMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BookingMaster" EntityType="Self.BookingMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComplaintsMaster" EntityType="Self.ComplaintsMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ContactMaster" EntityType="Self.ContactMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EnquiryMaster" EntityType="Self.EnquiryMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EventMaster" EntityType="Self.EventMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FeedBackMaster" EntityType="Self.FeedBackMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LoginMaster" EntityType="Self.LoginMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SendEmailMaster" EntityType="Self.SendEmailMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AmentiesMasters" EntityType="Self.AmentiesMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AreaMasters" EntityType="Self.AreaMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingMasters" EntityType="Self.BookingMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatMessages" EntityType="Self.ChatMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityMasters" EntityType="Self.CityMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComplaintsMasters" EntityType="Self.ComplaintsMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactMasters" EntityType="Self.ContactMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnquiryMasters" EntityType="Self.EnquiryMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventMasters" EntityType="Self.EventMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedBackMasters" EntityType="Self.FeedBackMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginMasters" EntityType="Self.LoginMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SendEmailMasters" EntityType="Self.SendEmailMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMasters" EntityType="Self.UserMasters" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AmentiesMaster_EventMaster" Association="Self.FK_AmentiesMaster_EventMaster">
-            <End Role="EventMaster" EntitySet="EventMaster" />
-            <End Role="AmentiesMaster" EntitySet="AmentiesMaster" />
+            <End Role="EventMasters" EntitySet="EventMasters" />
+            <End Role="AmentiesMasters" EntitySet="AmentiesMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_AreaMaster_CityMaster" Association="Self.FK_AreaMaster_CityMaster">
-            <End Role="CityMaster" EntitySet="CityMaster" />
-            <End Role="AreaMaster" EntitySet="AreaMaster" />
+            <End Role="CityMasters" EntitySet="CityMasters" />
+            <End Role="AreaMasters" EntitySet="AreaMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_BookingMaster_UserMaster1" Association="Self.FK_BookingMaster_UserMaster1">
-            <End Role="UserMaster" EntitySet="UserMaster" />
-            <End Role="BookingMaster" EntitySet="BookingMaster" />
+            <End Role="UserMasters" EntitySet="UserMasters" />
+            <End Role="BookingMasters" EntitySet="BookingMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_ComplaintsMaster_UserMaster" Association="Self.FK_ComplaintsMaster_UserMaster">
-            <End Role="UserMaster" EntitySet="UserMaster" />
-            <End Role="ComplaintsMaster" EntitySet="ComplaintsMaster" />
+            <End Role="UserMasters" EntitySet="UserMasters" />
+            <End Role="ComplaintsMasters" EntitySet="ComplaintsMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_FeedBackMaster_UserMaster" Association="Self.FK_FeedBackMaster_UserMaster">
-            <End Role="UserMaster" EntitySet="UserMaster" />
-            <End Role="FeedBackMaster" EntitySet="FeedBackMaster" />
+            <End Role="UserMasters" EntitySet="UserMasters" />
+            <End Role="FeedBackMasters" EntitySet="FeedBackMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_LoginMaster_UserMaster" Association="Self.FK_LoginMaster_UserMaster">
-            <End Role="UserMaster" EntitySet="UserMaster" />
-            <End Role="LoginMaster" EntitySet="LoginMaster" />
+            <End Role="UserMasters" EntitySet="UserMasters" />
+            <End Role="LoginMasters" EntitySet="LoginMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_UserMaster_AreaMaster" Association="Self.FK_UserMaster_AreaMaster">
-            <End Role="AreaMaster" EntitySet="AreaMaster" />
-            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="AreaMasters" EntitySet="AreaMasters" />
+            <End Role="UserMasters" EntitySet="UserMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_UserMaster_CityMaster" Association="Self.FK_UserMaster_CityMaster">
-            <End Role="CityMaster" EntitySet="CityMaster" />
-            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="CityMasters" EntitySet="CityMasters" />
+            <End Role="UserMasters" EntitySet="UserMasters" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -560,6 +570,7 @@
             <End Role="LoginMaster" EntitySet="LoginMasters" />
           </AssociationSet>
           <EntitySet Name="SendEmailMasters" EntityType="Wedding_PlannerModel.SendEmailMaster" />
+          <EntitySet Name="ChatMessages" EntityType="Wedding_PlannerModel.ChatMessage" />
         </EntityContainer>
         <EntityType Name="SendEmailMaster">
           <Key>
@@ -571,158 +582,176 @@
           <Property Name="Message" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
           <Property Name="Send_On" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="ChatMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BotReply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Wedding_PlannerModelStoreContainer" CdmEntityContainer="Wedding_PlannerEntities">
-          <EntitySetMapping Name="AmentiesMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.AmentiesMaster">
-              <MappingFragment StoreEntitySet="AmentiesMaster">
-                <ScalarProperty Name="EventName" ColumnName="EventName" />
-                <ScalarProperty Name="Laun" ColumnName="Laun" />
-                <ScalarProperty Name="Hall" ColumnName="Hall" />
-                <ScalarProperty Name="Music" ColumnName="Music" />
-                <ScalarProperty Name="Tent" ColumnName="Tent" />
-                <ScalarProperty Name="Parlour" ColumnName="Parlour" />
-                <ScalarProperty Name="Catering" ColumnName="Catering" />
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Wedding_PlannerModelStoreContainer" CdmEntityContainer="Wedding_PlannerEntities">
+    <EntitySetMapping Name="AmentiesMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.AmentiesMaster)">
+        <MappingFragment StoreEntitySet="AmentiesMasters">
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="Laun" ColumnName="Laun" />
+          <ScalarProperty Name="Hall" ColumnName="Hall" />
+          <ScalarProperty Name="Music" ColumnName="Music" />
+          <ScalarProperty Name="Tent" ColumnName="Tent" />
+          <ScalarProperty Name="Parlour" ColumnName="Parlour" />
+          <ScalarProperty Name="Catering" ColumnName="Catering" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AreaMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.AreaMaster)">
+        <MappingFragment StoreEntitySet="AreaMasters">
+          <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+          <ScalarProperty Name="Area_Name" ColumnName="Area_Name" />
+          <ScalarProperty Name="Related_City_Id" ColumnName="Related_City_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.BookingMaster)">
+        <MappingFragment StoreEntitySet="BookingMasters">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="BookedBy" ColumnName="BookedBy" />
+          <ScalarProperty Name="EventList" ColumnName="EventList" />
+          <ScalarProperty Name="BookDate" ColumnName="BookDate" />
+          <ScalarProperty Name="GuestCount" ColumnName="GuestCount" />
+          <ScalarProperty Name="Hall" ColumnName="Hall" />
+          <ScalarProperty Name="Lawn" ColumnName="Lawn" />
+          <ScalarProperty Name="Music" ColumnName="Music" />
+          <ScalarProperty Name="Tent" ColumnName="Tent" />
+          <ScalarProperty Name="Parlour" ColumnName="Parlour" />
+          <ScalarProperty Name="Catering" ColumnName="Catering" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CityMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.CityMaster)">
+        <MappingFragment StoreEntitySet="CityMasters">
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComplaintsMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.ComplaintsMaster)">
+        <MappingFragment StoreEntitySet="ComplaintsMasters">
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ComplainBy" ColumnName="ComplainBy" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.ContactMaster)">
+        <MappingFragment StoreEntitySet="ContactMasters">
+          <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobNo" ColumnName="MobNo" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnquiryMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.EnquiryMaster)">
+        <MappingFragment StoreEntitySet="EnquiryMasters">
+          <ScalarProperty Name="Enquiry_Id" ColumnName="Enquiry_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Enquiry_Message" ColumnName="Enquiry_Message" />
+          <ScalarProperty Name="Enquiry_DateTime" ColumnName="Enquiry_DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.EventMaster)">
+        <MappingFragment StoreEntitySet="EventMasters">
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeedBackMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.FeedBackMaster)">
+        <MappingFragment StoreEntitySet="FeedBackMasters">
+          <ScalarProperty Name="FeedBackId" ColumnName="FeedBackId" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="FeedBackBy" ColumnName="FeedBackBy" />
+          <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.LoginMaster)">
+        <MappingFragment StoreEntitySet="LoginMasters">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+          <ScalarProperty Name="User_Status" ColumnName="User_Status" />
+          <ScalarProperty Name="Login_Count" ColumnName="Login_Count" />
+          <ScalarProperty Name="Last_Login_Time" ColumnName="Last_Login_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.UserMaster)">
+        <MappingFragment StoreEntitySet="UserMasters">
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Related_City_Id" ColumnName="Related_City_Id" />
+          <ScalarProperty Name="Related_Area_Id" ColumnName="Related_Area_Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Picture_File_Name" ColumnName="Picture_File_Name" />
+          <ScalarProperty Name="DateTime_Of_Reg" ColumnName="DateTime_Of_Reg" />
+          <ScalarProperty Name="Is_Del" ColumnName="Is_Del" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SendEmailMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.SendEmailMaster)">
+        <MappingFragment StoreEntitySet="SendEmailMasters">
+          <ScalarProperty Name="Send_Id" ColumnName="Send_Id" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Send_On" ColumnName="Send_On" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="ChatMessages">
+            <EntityTypeMapping TypeName="Wedding_PlannerModel.ChatMessage">
+              <MappingFragment StoreEntitySet="ChatMessages">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="BotReply" ColumnName="BotReply" />
+                <ScalarProperty Name="UserMessage" ColumnName="UserMessage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AreaMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.AreaMaster">
-              <MappingFragment StoreEntitySet="AreaMaster">
-                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
-                <ScalarProperty Name="Area_Name" ColumnName="Area_Name" />
-                <ScalarProperty Name="Related_City_Id" ColumnName="Related_City_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BookingMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.BookingMaster">
-              <MappingFragment StoreEntitySet="BookingMaster">
-                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
-                <ScalarProperty Name="BookedBy" ColumnName="BookedBy" />
-                <ScalarProperty Name="EventList" ColumnName="EventList" />
-                <ScalarProperty Name="BookDate" ColumnName="BookDate" />
-                <ScalarProperty Name="GuestCount" ColumnName="GuestCount" />
-                <ScalarProperty Name="Hall" ColumnName="Hall" />
-                <ScalarProperty Name="Lawn" ColumnName="Lawn" />
-                <ScalarProperty Name="Music" ColumnName="Music" />
-                <ScalarProperty Name="Tent" ColumnName="Tent" />
-                <ScalarProperty Name="Parlour" ColumnName="Parlour" />
-                <ScalarProperty Name="Catering" ColumnName="Catering" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CityMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.CityMaster">
-              <MappingFragment StoreEntitySet="CityMaster">
-                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
-                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ComplaintsMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.ComplaintsMaster">
-              <MappingFragment StoreEntitySet="ComplaintsMaster">
-                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
-                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="ComplainBy" ColumnName="ComplainBy" />
-                <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ContactMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.ContactMaster">
-              <MappingFragment StoreEntitySet="ContactMaster">
-                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EnquiryMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.EnquiryMaster">
-              <MappingFragment StoreEntitySet="EnquiryMaster">
-                <ScalarProperty Name="Enquiry_Id" ColumnName="Enquiry_Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="Enquiry_Message" ColumnName="Enquiry_Message" />
-                <ScalarProperty Name="Enquiry_DateTime" ColumnName="Enquiry_DateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EventMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.EventMaster">
-              <MappingFragment StoreEntitySet="EventMaster">
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-                <ScalarProperty Name="EventName" ColumnName="EventName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FeedBackMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.FeedBackMaster">
-              <MappingFragment StoreEntitySet="FeedBackMaster">
-                <ScalarProperty Name="FeedBackId" ColumnName="FeedBackId" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="FeedBackBy" ColumnName="FeedBackBy" />
-                <ScalarProperty Name="Date_Time" ColumnName="Date_Time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LoginMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.LoginMaster">
-              <MappingFragment StoreEntitySet="LoginMaster">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="User_Password" ColumnName="User_Password" />
-                <ScalarProperty Name="User_Type" ColumnName="User_Type" />
-                <ScalarProperty Name="User_Status" ColumnName="User_Status" />
-                <ScalarProperty Name="Login_Count" ColumnName="Login_Count" />
-                <ScalarProperty Name="Last_Login_Time" ColumnName="Last_Login_Time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.UserMaster">
-              <MappingFragment StoreEntitySet="UserMaster">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="Related_City_Id" ColumnName="Related_City_Id" />
-                <ScalarProperty Name="Related_Area_Id" ColumnName="Related_Area_Id" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Picture_File_Name" ColumnName="Picture_File_Name" />
-                <ScalarProperty Name="DateTime_Of_Reg" ColumnName="DateTime_Of_Reg" />
-                <ScalarProperty Name="Is_Del" ColumnName="Is_Del" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SendEmailMasters">
-            <EntityTypeMapping TypeName="Wedding_PlannerModel.SendEmailMaster">
-              <MappingFragment StoreEntitySet="SendEmailMaster">
-                <ScalarProperty Name="Send_On" ColumnName="Send_On" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="Send_Id" ColumnName="Send_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -736,7 +765,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

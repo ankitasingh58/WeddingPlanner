@@ -37,5 +37,6 @@ namespace Wedding_Planner.Models
         public virtual DbSet<LoginMaster> LoginMasters { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<SendEmailMaster> SendEmailMasters { get; set; }
+        public virtual DbSet<ChatMessage> ChatMessages { get; set; }
     }
 }
