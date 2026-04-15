@@ -25,6 +25,7 @@
         <AssociationConnector Association="Wedding_PlannerModel.FK_FeedBackMaster_UserMaster" ManuallyRouted="false" />
         <AssociationConnector Association="Wedding_PlannerModel.FK_LoginMaster_UserMaster" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Wedding_PlannerModel.SendEmailMaster" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="Wedding_PlannerModel.ChatMessage" Width="1.5" PointX="9.75" PointY="4.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

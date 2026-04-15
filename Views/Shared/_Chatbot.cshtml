@@ -1,0 +1,151 @@
+﻿<!-- Chat Icon -->
+<button class="chat-toggle" onclick="toggleChat()">💬</button>
+
+<!-- Chat Box -->
+<div class="chat-container" id="chatBox" style="margin-right:10px">
+    <div class="chat-header">
+        🤖 EventGenie AI
+    </div>
+
+    <div id="chatbox" class="chat-body"></div>
+
+    <div class="chat-footer">
+        <input type="text" id="msg" placeholder="Ask anything..." />
+        <button onclick="send()">➤</button>
+        <button onclick="startVoice()">🎤</button>
+        <button onclick="addEmoji()">😀</button>
+    </div>
+</div>
+
+<style>
+    .chat-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #6C5CE7;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .chat-container {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 355px;
+        height: 450px;
+        background: white;
+        border-radius: 15px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    }
+
+    .chat-header {
+        background: linear-gradient(45deg, #6C5CE7, #00cec9);
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        background: #f5f6fa;
+    }
+
+    .message {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 12px;
+        max-width: 80%;
+    }
+
+    .user {
+        background: #6C5CE7;
+        color: white;
+        margin-left: auto;
+    }
+
+    .bot {
+        background: #dfe6e9;
+    }
+
+    .chat-footer {
+        display: flex;
+        padding: 10px;
+    }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-footer button {
+            margin-left: 5px;
+            border: none;
+            background: #6C5CE7;
+            color: white;
+            border-radius: 50%;
+            padding: 8px;
+            cursor: pointer;
+        }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+function toggleChat() {
+    let chat = document.getElementById("chatBox");
+    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+function send() {
+    let msg = $("#msg").val();
+    if (!msg) return;
+
+    $("#chatbox").append(`<div class="message user">${msg}</div>`);
+    $("#msg").val("");
+
+    $("#chatbox").append(`<div class="message bot">Typing...</div>`);
+
+    $.post("/Chat/Ask", { message: msg }, function (data) {
+        $(".bot:last").remove();
+        $("#chatbox").append(`<div class="message bot">${data}</div>`);
+        $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+    });
+}
+
+function addEmoji() {
+    $("#msg").val($("#msg").val() + " 😊");
+}
+
+function startVoice() {
+    let recognition = new webkitSpeechRecognition();
+    recognition.lang = "en-IN";
+
+    recognition.onresult = function (event) {
+        $("#msg").val(event.results[0][0].transcript);
+    };
+
+    recognition.start();
+    }
+
+    $(document).ready(function () {
+        $.get("/Chat/GetHistory", function (data) {
+            data.reverse().forEach(chat => {
+                $("#chatbox").append(`<div class="message user">${chat.user}</div>`);
+                $("#chatbox").append(`<div class="message bot">${chat.bot}</div>`);
+            });
+        });
+    });
+</script>
