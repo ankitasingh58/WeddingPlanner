@@ -1,8 +1,183 @@
-﻿<!-- Chat Icon -->
+﻿
 <button class="chat-toggle" onclick="toggleChat()">💬</button>
 
+<div class="chat-container" id="chatBox">
+    <div class="chat-header">
+        🤖 EventGenie AI
+    </div>
+
+    <div id="chatbox" class="chat-body"></div>
+
+    <div class="chat-footer">
+        <input type="text" id="msg" placeholder="Ask anything..." onkeypress="if(event.keyCode==13) send()" />
+        <button onclick="send()">➤</button>
+        <button onclick="startVoice()">🎤</button>
+        <button onclick="addEmoji()">😀</button>
+    </div>
+</div>
+
+<style>
+    /* UI Improvements */
+    .chat-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #6C5CE7;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .chat-container {
+        position: fixed;
+        bottom: 85px;
+        right: 20px;
+        width: 350px;
+        height: 450px;
+        background: white;
+        border-radius: 15px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        z-index: 1000;
+    }
+
+    .chat-header {
+        background: linear-gradient(45deg, #6C5CE7, #00cec9);
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background: #f5f6fa;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .message {
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 15px;
+        max-width: 85%;
+        font-size: 14px;
+        line-height: 1.5;
+        word-wrap: break-word;
+    }
+
+    .user {
+        background: #6C5CE7;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 2px;
+    }
+
+    .bot {
+        background: #dfe6e9;
+        color: #333;
+        align-self: flex-start;
+        border-bottom-left-radius: 2px;
+    }
+
+    .chat-footer {
+        display: flex;
+        padding: 10px;
+        background: white;
+        border-top: 1px solid #eee;
+    }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+
+        .chat-footer button {
+            margin-left: 5px;
+            border: none;
+            background: #6C5CE7;
+            color: white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+</style>
+
+<script>
+    function toggleChat() {
+        $("#chatBox").fadeToggle(300).css("display", "flex");
+    }
+
+    function send() {
+        let msg = $("#msg").val().trim();
+        if (!msg) return;
+
+        // 1. User ka message screen par dikhao
+        $("#chatbox").append(`<div class="message user">${msg}</div>`);
+        $("#msg").val("");
+        updateScroll();
+
+        // 2. Typing indicator dikhao
+        let typingId = "typing-" + Date.now();
+        $("#chatbox").append(`<div class="message bot" id="${typingId}">Typing...</div>`);
+        updateScroll();
+
+        // 3. Controller ko call karein
+        $.post("/Chat/Ask", { message: msg }, function (data) {
+            $(`#${typingId}`).remove(); // Typing hatao
+            $("#chatbox").append(`<div class="message bot">${data}</div>`); // AI reply add karo
+            updateScroll();
+        }).fail(function () {
+            $(`#${typingId}`).text("Connection lost. Please try again.");
+        });
+    }
+
+    function updateScroll() {
+        var element = document.getElementById("chatbox");
+        element.scrollTop = element.scrollHeight;
+    }
+
+    function addEmoji() { $("#msg").val($("#msg").val() + " 😊"); }
+
+    function startVoice() {
+        let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = "en-IN";
+        recognition.onresult = function (event) {
+            $("#msg").val(event.results[0][0].transcript);
+        };
+        recognition.start();
+    }
+
+    $(document).ready(function () {
+        // Purani chat history load karein
+        $.get("/Chat/GetHistory", function (data) {
+            data.forEach(chat => {
+                $("#chatbox").append(`<div class="message user">${chat.user}</div>`);
+                $("#chatbox").append(`<div class="message bot">${chat.bot}</div>`);
+            });
+            updateScroll();
+        });
+    });
+</script>
+
+<!-- Chat Icon -->
+<!--<button class="chat-toggle" onclick="toggleChat()">💬</button>-->
 <!-- Chat Box -->
-<div class="chat-container" id="chatBox" style="margin-right:10px">
+<!--<div class="chat-container" id="chatBox" style="margin-right:10px">
     <div class="chat-header">
         🤖 EventGenie AI
     </div>
@@ -107,7 +282,8 @@
 function toggleChat() {
     let chat = document.getElementById("chatBox");
     chat.style.display = chat.style.display === "flex" ? "none" : "flex";
-}
+    }
+
 
 function send() {
     let msg = $("#msg").val();
@@ -148,4 +324,4 @@ function startVoice() {
             });
         });
     });
-</script>
+</script>-->
