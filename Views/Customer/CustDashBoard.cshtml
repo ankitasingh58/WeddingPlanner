@@ -1,4 +1,4 @@
-﻿
+﻿@model Wedding_Planner.Models.DashboardVM
 @{
     ViewBag.Title = "CustDashBoard";
     Layout = "~/Views/Shared/User_Layout.cshtml";
@@ -7,14 +7,13 @@
     .navbox {
         margin: 30px;
         min-height: 80px;
-        background-color: #68392a ;
-        color:white;
-        padding: 5%;
+        background-color: #68392a;
+        color: white;
+        padding: 3%;
         text-align: center;
         text-decoration: none;
         box-shadow: 3px 3px 4px 3px #191414;
         border-radius: 5px;
-       
     }
 
         .navbox:hover {
@@ -35,20 +34,21 @@
         <div class="col-sm-10">
 
             <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
-                <a href="UserProfile" class="col-sm-3 navbox"><i class="fa fa-user" style="font-size:30px;" aria-hidden="true"></i><h6>User Profile </h6></a>
-                <a href="MyBooking" class="col-sm-3 navbox"><i class="fa fa-book" style="font-size:30px;" aria-hidden="true"></i><h6> My Booking</h6></a>
-                <a href="FeedBack" class="col-sm-3 navbox"><i class="fa fa-comments-o" style="font-size:30px;" aria-hidden="true"></i><h6> Feed Back </h6></a>
+                <a href="UserProfile" class="col-sm-3 navbox" style="padding:4%"><i class="fa fa-user" style="font-weight: bold;font-size:30px" aria-hidden="true"></i><h6><u>User Profile</u> </h6></a>
 
+                <a href="MyBooking" class="col-sm-3 navbox"><h6><i class="fa fa-book" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; My Booking</h6><span style="font-weight:bold;font-size:30px">@Model.TotalBookings</span></a>
+
+                <a href="FeedBack" class="col-sm-3 navbox"><h6><i class="fa fa-comments-o" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; Feed Back </h6><span style="font-weight:bold;font-size:30px">@Model.TotalFeedbacks</span></a>
             </div>
 
 
 
             <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
+                <a href="Complaints" class="col-sm-3 navbox"><h6><i class="fa fa-comments" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; Complain</h6><span style="font-weight:bold;font-size:30px">@Model.TotalComplaints</span></a>
 
+                <a href="SendEmail" class="col-sm-3 navbox"><h6><i class="fa fa-envelope" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; SMS/Email</h6><span style="font-weight:bold;font-size:30px">@Model.TotalEmails</span></a>
 
-                <a href="Complaints" class="col-sm-3 navbox"><i class="fa fa-comments" style="font-size:30px;" aria-hidden="true"></i><h6>Complain</h6></a>
-                <a href="SendEmail" class="col-sm-3 navbox"><i class="fa fa-envelope" style="font-size:30px;" aria-hidden="true"></i><h6>SMS/Email</h6></a>
-                <a href="ChangePassword" class="col-sm-3 navbox"><i class="fa fa-key" style="font-size:30px;" aria-hidden="true"></i><h6>Change Paswrd</h6></a>
+                <a href="ChangePassword" class="col-sm-3 navbox" style="padding:4%"><i class="fa fa-key" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i><h6><u>Change Paswrd</u></h6></a>
             </div>
         </div>
         <div class="col-sm-1"></div>

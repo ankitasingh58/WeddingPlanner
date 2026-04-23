@@ -3,23 +3,67 @@
   "WorkspaceRootPath": "D:\\GitHub Project\\Wedding_Planner\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\views\\shared\\_chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\views\\customer\\custdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:views\\customer\\custdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\models\\dashboardvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:models\\dashboardvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\views\\customer\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:views\\customer\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\controllers\\generalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:controllers\\generalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\views\\general\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:views\\general\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\views\\general\\menuplan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:views\\general\\menuplan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\views\\general\\vendordetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:views\\general\\vendordetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\app_code\\authoriseusersessionattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:app_code\\authoriseusersessionattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\views\\general\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:views\\general\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|D:\\GitHub Project\\Wedding_Planner\\views\\shared\\_chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:views\\shared\\_chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\models\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|D:\\GitHub Project\\Wedding_Planner\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|D:\\GitHub Project\\Wedding_Planner\\models\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:models\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\models\\model1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|D:\\GitHub Project\\Wedding_Planner\\models\\model1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:models\\model1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|d:\\github project\\wedding_planner\\models\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|D:\\GitHub Project\\Wedding_Planner\\models\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C98B69DF-6962-47DC-AA8D-E3820F0135C2}|Wedding_Planner.csproj|solutionrelative:models\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -37,38 +81,176 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAYwC0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T16:35:01.676Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChatController.cs",
-              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\ChatController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ChatController.cs",
-              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\ChatController.cs*",
-              "RelativeToolTip": "Controllers\\ChatController.cs*",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwB4AAAAsAAAAAAAAAA==",
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAuwBkAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T08:18:47.291Z",
+              "WhenOpened": "2026-04-21T16:30:04.706Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CustDashBoard.cshtml",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Views\\Customer\\CustDashBoard.cshtml",
+              "RelativeDocumentMoniker": "Views\\Customer\\CustDashBoard.cshtml",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Views\\Customer\\CustDashBoard.cshtml",
+              "RelativeToolTip": "Views\\Customer\\CustDashBoard.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAwDIAAAByAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-21T16:29:48.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MenuPlan.cshtml",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\MenuPlan.cshtml",
+              "RelativeDocumentMoniker": "Views\\General\\MenuPlan.cshtml",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\MenuPlan.cshtml",
+              "RelativeToolTip": "Views\\General\\MenuPlan.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-21T16:35:35.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChangePassword.cshtml",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Views\\Customer\\ChangePassword.cshtml",
+              "RelativeDocumentMoniker": "Views\\Customer\\ChangePassword.cshtml",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Views\\Customer\\ChangePassword.cshtml",
+              "RelativeToolTip": "Views\\Customer\\ChangePassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-21T17:17:18.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DashboardVM.cs",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Models\\DashboardVM.cs",
+              "RelativeDocumentMoniker": "Models\\DashboardVM.cs",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Models\\DashboardVM.cs",
+              "RelativeToolTip": "Models\\DashboardVM.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T17:21:31.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VendorDetails.cshtml",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\VendorDetails.cshtml",
+              "RelativeDocumentMoniker": "Views\\General\\VendorDetails.cshtml",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\VendorDetails.cshtml",
+              "RelativeToolTip": "Views\\General\\VendorDetails.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAACCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-21T16:35:29.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\General\\Login.cshtml",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\Login.cshtml",
+              "RelativeToolTip": "Views\\General\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-21T16:35:43.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GeneralController.cs",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\GeneralController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GeneralController.cs",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\GeneralController.cs",
+              "RelativeToolTip": "Controllers\\GeneralController.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAmwIIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T16:35:49.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthoriseUserSessionAttribute.cs",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\App_Code\\AuthoriseUserSessionAttribute.cs",
+              "RelativeDocumentMoniker": "App_Code\\AuthoriseUserSessionAttribute.cs",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\App_Code\\AuthoriseUserSessionAttribute.cs",
+              "RelativeToolTip": "App_Code\\AuthoriseUserSessionAttribute.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAUwB0AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T16:34:34.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Home.cshtml",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\Home.cshtml",
+              "RelativeDocumentMoniker": "Views\\General\\Home.cshtml",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Views\\General\\Home.cshtml",
+              "RelativeToolTip": "Views\\General\\Home.cshtml",
+              "ViewState": "AgIAADcAAAAAAAAAAAAcwDwAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T09:03:00.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChatController.cs",
+              "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "Controllers\\ChatController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAIwBgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T08:18:47.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "_Chatbot.cshtml",
               "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Views\\Shared\\_Chatbot.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Chatbot.cshtml",
               "ToolTip": "D:\\GitHub Project\\Wedding_Planner\\Views\\Shared\\_Chatbot.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Chatbot.cshtml",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAUwAUBAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAACIBAAAAAAAAAABRwDUBAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-19T08:16:22.098Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "Model1.Context.tt",
               "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Models\\Model1.Context.tt",
               "RelativeDocumentMoniker": "Models\\Model1.Context.tt",
@@ -76,12 +258,11 @@
               "RelativeToolTip": "Models\\Model1.Context.tt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-04-19T07:54:31.85Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T07:54:31.85Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "Model1.Designer.cs",
               "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Models\\Model1.Designer.cs",
               "RelativeDocumentMoniker": "Models\\Model1.Designer.cs",
@@ -89,12 +270,11 @@
               "RelativeToolTip": "Models\\Model1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T07:54:29.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T07:54:29.312Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "Model1.Context.cs",
               "DocumentMoniker": "D:\\GitHub Project\\Wedding_Planner\\Models\\Model1.Context.cs",
               "RelativeDocumentMoniker": "Models\\Model1.Context.cs",
@@ -102,8 +282,7 @@
               "RelativeToolTip": "Models\\Model1.Context.cs",
               "ViewState": "AgIAACIAAAAAAAAAAIA1wCgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T07:53:25.6Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T07:53:25.6Z"
             }
           ]
         }

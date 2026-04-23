@@ -18,10 +18,14 @@ namespace Wedding_Planner.Controllers
         // GET: Customer
         public ActionResult CustDashBoard()
         {
-           // if (Session["uid"] == null)
-                //return RedirectToAction("Login", "General");
+            DashboardVM model = new DashboardVM();
+            string uid = Session["uid"].ToString();
+            model.TotalBookings = db.BookingMasters.Count(x => x.BookedBy == uid);
+            model.TotalFeedbacks = db.FeedBackMasters.Count(x => x.FeedBackBy == uid);
+            model.TotalComplaints = db.ComplaintsMasters.Count(x => x.ComplainBy == uid);
+            model.TotalEmails = db.SendEmailMasters.Count(x => x.EmailId == uid);
             ShowUserPicName();
-            return View();
+            return View(model); 
         }
         [HttpGet]
         public ActionResult UserProfile()
@@ -29,7 +33,8 @@ namespace Wedding_Planner.Controllers
             ShowUserPicName();
             BindCitiesAndAreaInDDL();
             string uid = Session["uid"].ToString();
-            UserMaster um = db.UserMasters.Find(uid);
+            UserMaster um = new UserMaster();
+            um = db.UserMasters.Find(uid);
             return View(um);
         }
         [HttpPost]
