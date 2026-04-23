@@ -2529,6 +2529,7 @@
     <Compile Include="Models\ContactMaster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DashboardVM.cs" />
     <Compile Include="Models\EnquiryMaster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
