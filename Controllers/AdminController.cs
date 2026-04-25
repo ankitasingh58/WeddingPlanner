@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Wedding_Planner.App_Code;
+using System.Data.Entity;
 using Wedding_Planner.Models;
 
 namespace Wedding_Planner.Controllers
@@ -16,8 +17,17 @@ namespace Wedding_Planner.Controllers
         // GET: Admin
         public ActionResult AdminDashBoard()
         {
+            AnalyticsViewModel obj = new AnalyticsViewModel();
             ShowUserPicName();
-            return View();
+            obj.TotalCustomers= db.UserMasters.Count(x => x.LoginMaster.User_Type.ToLower() != "admin");
+            obj.TotalBookings= db.BookingMasters.Count();
+            obj.TotalComplaint= db.ComplaintsMasters.Count();
+            obj.TotalFeedback= db.FeedBackMasters.Count();
+            obj.TotalEnquary = db.EnquiryMasters.Count();
+            obj.TotalContact = db.ContactMasters.Count();
+
+
+            return View(obj);
         }
         [NonAction]
         void ShowUserPicName()
@@ -57,7 +67,7 @@ namespace Wedding_Planner.Controllers
         public ActionResult CustomerDetails()
         {
             ShowUserPicName();
-            List<UserMaster> LstCust = db.UserMasters.ToList();
+            List<UserMaster> LstCust = db.UserMasters.Where(x=>x.LoginMaster.User_Type.ToUpper()!="ADMIN").OrderBy(x=>x.Name).ToList();
             return View(LstCust);
         }
         public ActionResult FeedBackDetails()
@@ -222,7 +232,82 @@ namespace Wedding_Planner.Controllers
             TempData["Message"] = msg;
             return RedirectToAction("ContactsDetails");
         }
-       
+
+
+        public ActionResult AnalyticsDashboard()
+        {
+            using (var db = new Wedding_PlannerEntities())
+            {
+                var model = new AnalyticsViewModel();
+
+                // 1. Top Cards Data
+                model.TotalBookings = db.BookingMasters.Count();
+                model.TotalRevenue = db.BookingMasters.Sum(x => (double?)x.TotalAmount) ?? 0;
+                model.TotalCustomers = db.UserMasters.Count(x => x.LoginMaster.User_Type.ToLower() != "admin");
+                model.UpcomingEvents = db.BookingMasters.Count(x => x.BookDate >= DateTime.Now);
+
+                // 2. Donut Chart Data (Grouping by EventList)
+                var eventGroups = db.BookingMasters
+                                    .GroupBy(x => x.EventList) // Aapki table mein EventList column hai
+                                    .Select(g => new { Name = g.Key, Count = g.Count() })
+                                    .ToList();
+
+                model.EventNames = eventGroups.Select(x => x.Name).ToList();
+                model.EventCounts = eventGroups.Select(x => x.Count).ToList();
+
+                //model.RecentBookings = db.BookingMasters
+                //                 .OrderByDescending(x => x.BookingId)
+                //                 .Take(2)
+                //                 .ToList();
+
+                model.RecentBookings = db.BookingMasters
+                         .Include(x => x.UserMaster) // Ye line User ka data pehle hi load kar legi
+                         .OrderByDescending(x => x.BookingId)
+                         .Take(5)
+                         .ToList();
+
+                //model.RecentBookings = db.BookingMasters
+                //         .Include("UserMaster")
+                //         .OrderByDescending(x => x.BookingId)
+                //         .Take(5)
+                //         .ToList();
+
+
+                // 3. Horizontal Bar Chart (Amenities Demand)
+                // Note: Aapki table mein Music, Tent, etc. bool columns hain (0 or 1)
+                model.AmenityNames = new List<string> { "Music", "Tent", "Parlour", "Catering", "Hall", "Lawn" };
+                model.AmenityCounts = new List<int> {
+            db.BookingMasters.Count(x => x.Music == "true"), // Assuming string/char '1' for yes
+            db.BookingMasters.Count(x => x.Tent == "true"),
+            db.BookingMasters.Count(x => x.Parlour == "true"),
+            db.BookingMasters.Count(x => x.Catering == "true"),
+            db.BookingMasters.Count(x => x.Hall == "true"),
+            db.BookingMasters.Count(x => x.Lawn == "true")
+        };
+
+                return View(model);
+            }
+        }
+
+
+        public ActionResult GenerateBill(int id)
+        {
+            using (var db = new Wedding_PlannerEntities())
+            {
+                // Eager Loading use karenge taaki User ki details bhi mil jayein
+                var billData = db.BookingMasters
+                                 .Include(x => x.UserMaster)
+                                 .FirstOrDefault(x => x.BookingId == id);
+
+                if (billData == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(billData);
+            }
+        }
+
     }
 
 }

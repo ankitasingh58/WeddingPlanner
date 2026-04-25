@@ -1,4 +1,4 @@
-﻿
+﻿@model Wedding_Planner.Models.AnalyticsViewModel
 @{
     ViewBag.Title = "AdminDashBoard";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
@@ -47,7 +47,9 @@
             <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
 
 
-                <a href="BookingDetails" class="col-sm-3 navbox"><i class="fa fa-comments" style="font-size:30px;" aria-hidden="true"></i><h6>Customer Booking</h6></a>
+                <a href="BookingDetails" class="col-sm-3 navbox"><i class="fa fa-comments" style="font-size:30px;" aria-hidden="true"></i><h6>Customer Booking</h6>
+                                                                                                                                          @Model.TotalCustomers              
+                </a>
                 <a href="EnquiryDetails" class="col-sm-3 navbox"><i class="fa fa-question" style="font-size:30px;" aria-hidden="true"></i><h6>Enquiery Details</h6></a>
                 <a href="ContactsDetails" class="col-sm-3 navbox"><i class="fa fa-phone" style="font-size:30px;" aria-hidden="true"></i><h6>Contact Details</h6></a>
             </div>
