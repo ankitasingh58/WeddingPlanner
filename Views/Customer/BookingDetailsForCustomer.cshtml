@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "BookingDetailsForCustomer";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+@using Wedding_Planner.Models;
+@model IEnumerable<BookingMaster>
+
+<script>
+    $(document).ready(function () {
+        var x = $("#bookDetail").text().trim();
+        if (x.length > 0)
+            $("#bookDetail").fadeIn(100).delay(2500).fadeOut(1500);
+    });
+</script>
+<style>
+    table tr:hover {
+        background-color: lightgray;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <h1 align="center" style="color:saddlebrown;font-weight:bold;font-family:'Script MT' "> Booking Records</h1>
+            <hr style="border-top: 1px solid saddlebrown " />
+            <p id="bookDetail" align="center" class="h5 text-center " style="min-height: 20px; width: 100%; padding: 2px; padding-top: 10px; font-size: 20px; font-weight: bold; color: #ae0707;display:none;">@TempData["Message"]</p>
+
+            <table border="1" width="100%">
+                <tr style="background-color:saddlebrown; color:white;text-align:center; height:45px;" align="center">
+                    <th style="text-align:center">SNO</th>
+                    @*<th style="text-align:center">Booking ID</th>*@
+                    <th style="text-align:center">Booked By</th>
+                    <th style="text-align:center">Events</th>
+                    <th style="text-align:center">Guest</th>
+                    <th style="text-align:center">Total Ammount</th>
+                    <th style="text-align:center">Date & Time</th>
+                    <th style="text-align:center">View Record</th>
+                </tr>
+                @{
+                    int sno = 1;
+                    foreach (BookingMaster tc in Model)
+                    {
+                        <tr style="height:40px;">
+                            <td style="text-align:center">@sno</td>
+                            @*<td style="text-align:center">@tc.BookingId</td>*@
+                            <td>@tc.BookedBy</td>
+                            <td style="text-align:center">@tc.EventList</td>
+
+                            <td style="text-align:center">@tc.GuestCount</td>
+
+                            <td style="text-align:center">@tc.TotalAmount</td>
+                            <td style="text-align:center">@tc.BookDate</td>
+
+                            <td style="text-align:center">
+                                <a href="@Url.Action("MyBooking","Customer" ,new { BookingId = tc.BookingId})"><i class="fa fa-eye" aria-hidden="true" style="color:saddlebrown;font-size:25px;"></i></a>
+                            </td>
+
+                        </tr>
+                        sno++;
+                    }
+                }
+            </table>
+            <br />
+
+        </div>
+
+    </div>
+</div>

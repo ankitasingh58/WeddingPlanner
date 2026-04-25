@@ -23,10 +23,51 @@ namespace Wedding_Planner.Controllers
             model.TotalBookings = db.BookingMasters.Count(x => x.BookedBy == uid);
             model.TotalFeedbacks = db.FeedBackMasters.Count(x => x.FeedBackBy == uid);
             model.TotalComplaints = db.ComplaintsMasters.Count(x => x.ComplainBy == uid);
-            model.TotalEmails = db.SendEmailMasters.Count(x => x.EmailId == uid);
+            model.TotalEmails = db.SendEmailMasters.Count(x => x.SendBy == uid);
             ShowUserPicName();
             return View(model); 
         }
+
+        // new list code start
+        [HttpGet]
+        public ActionResult BookingDetailsForCustomer()
+        {
+            ShowUserPicName();
+             string uid = Session["uid"].ToString();
+            List<BookingMaster> LstBookD = db.BookingMasters.Where(x => x.BookedBy == uid).ToList();
+            return View(LstBookD);
+        }
+
+        [HttpGet]
+        public ActionResult FeedBackForCustomer()
+        {
+            ShowUserPicName();
+            string uid = Session["uid"].ToString();
+            List<FeedBackMaster> LstFeedBack = db.FeedBackMasters.Where(x => x.FeedBackBy == uid).ToList();
+            return View(LstFeedBack);
+        }
+
+        [HttpGet]
+        public ActionResult ComplaintsForCustomer()
+        {
+            ShowUserPicName();
+            string uid = Session["uid"].ToString();
+            List<ComplaintsMaster> Lstcomplaint = db.ComplaintsMasters.Where(x => x.ComplainBy == uid).ToList();
+            return View(Lstcomplaint);
+        }
+
+        [HttpGet]
+        public ActionResult SentEmailByCustomer()
+        {
+            ShowUserPicName();
+            string uid = Session["uid"].ToString();
+            List<SendEmailMaster> Lstemail = db.SendEmailMasters.Where(x => x.SendBy == uid).ToList();
+            return View(Lstemail);
+        }
+
+        // new list code end
+
+
         [HttpGet]
         public ActionResult UserProfile()
         {
@@ -37,6 +78,7 @@ namespace Wedding_Planner.Controllers
             um = db.UserMasters.Find(uid);
             return View(um);
         }
+
         [HttpPost]
         public ActionResult UserProfile(UserMaster um)
         {
@@ -76,6 +118,7 @@ namespace Wedding_Planner.Controllers
             ShowUserPicName();
             return View();
         }
+
         [HttpPost]
         public ActionResult ChangePassword(string Pass,string NewPass,string ConfNewPass)
         {
@@ -107,16 +150,27 @@ namespace Wedding_Planner.Controllers
             ViewBag.Message = msg;
             return View();
         }
+
         [HttpGet]
-        public ActionResult SendEmail()
+        public ActionResult SendEmail(int? Send_Id)
         {
             ShowUserPicName();
+            if (Send_Id != 0 && Send_Id != null)
+            {
+                SendEmailMaster sm = db.SendEmailMasters.Find(Send_Id);
+                if (sm != null)
+                {
+                    return View(sm);
+                }
+            }
             return View();
         }
+
         [HttpPost]
         public ActionResult SendEmail(SendEmailMaster sm)
         {
             string msg = "";
+            string uid = Session["uid"].ToString();
             try               
             {               
                 SendEmailMaster tse = new SendEmailMaster();
@@ -124,6 +178,7 @@ namespace Wedding_Planner.Controllers
                 tse.EmailId = sm.EmailId;
                 tse.Message = sm.Message;
                 tse.Send_On = DateTime.Now;
+                tse.SendBy = uid;
                 db.SendEmailMasters.Add(tse);
                 db.SaveChanges();
                 MyEmailSender es = new MyEmailSender();
@@ -142,12 +197,20 @@ namespace Wedding_Planner.Controllers
             return View();
         }
 
-        public ActionResult FeedBack()
+        public ActionResult FeedBack(int? FeedBackId)
         {
             ShowUserPicName();
+            if (FeedBackId != 0 && FeedBackId != null)
+            {
+                FeedBackMaster fd = db.FeedBackMasters.Find(FeedBackId);
+                if (fd != null)
+                {
+                    return View(fd);
+                }
+            }
             return View();
         }
-        // to save feedback by saving ajax
+        
         public JsonResult SaveFeedBack(FeedBackMaster fm)
         {
             string msg = "";
@@ -168,12 +231,21 @@ namespace Wedding_Planner.Controllers
         }
        
         [HttpGet]
-        public ActionResult MyBooking()
+        public ActionResult MyBooking(int? BookingId)
         {
             ShowUserPicName();
-            BindEventsInDDL();           
+            BindEventsInDDL(); 
+            if(BookingId != 0 && BookingId != null)
+            {
+                BookingMaster bm = db.BookingMasters.Find(BookingId);
+                if(bm!=null)
+                {
+                    return View(bm);
+                }
+            }
             return View();
         }
+
         [HttpPost]
         public ActionResult MyBooking(BookingMaster bm)
         {
@@ -195,6 +267,7 @@ namespace Wedding_Planner.Controllers
             ViewBag.Msg = msg;
             return View();
         }
+
         [NonAction]
         void BindEventsInDDL()
         {
@@ -204,6 +277,7 @@ namespace Wedding_Planner.Controllers
                 Text = x.EventName
             });
         }
+
         public JsonResult GetAmentiUsingAJAX(string EventName)
         {
             db.Configuration.ProxyCreationEnabled = false;
@@ -211,12 +285,22 @@ namespace Wedding_Planner.Controllers
             return Json(Amenties, JsonRequestBehavior.AllowGet);
 
         }
+
         [HttpGet]
-        public ActionResult Complaints()
+        public ActionResult Complaints(int? SubjectId)
         {
             ShowUserPicName();
+            if (SubjectId != 0 && SubjectId != null)
+            {
+                ComplaintsMaster cm = db.ComplaintsMasters.Find(SubjectId);
+                if (cm != null)
+                {
+                    return View(cm);
+                }
+            }
             return View();
         }
+
         [HttpPost]
         public ActionResult Complaints(ComplaintsMaster cm)
         {
@@ -237,6 +321,7 @@ namespace Wedding_Planner.Controllers
             ViewBag.Msg = message;
             return View();
         }
+
         [NonAction]
         void ShowUserPicName()
         {
@@ -256,6 +341,7 @@ namespace Wedding_Planner.Controllers
             }
             ViewBag.UserName = um.Name;
         }
+
         [NonAction]
         void BindCitiesAndAreaInDDL()
         {
@@ -276,6 +362,7 @@ namespace Wedding_Planner.Controllers
                 Selected = x.Area_Id == um.Related_Area_Id ? true : false
             });
         }
+
         public JsonResult GetAreaUsingAJAX(int CityId)
         {
             db.Configuration.ProxyCreationEnabled = false;
@@ -283,6 +370,7 @@ namespace Wedding_Planner.Controllers
             return Json(LstArea, JsonRequestBehavior.AllowGet);
 
         }
+
         [HttpGet]
         public ActionResult Logout()
         {
