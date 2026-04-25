@@ -1,0 +1,202 @@
+﻿@model Wedding_Planner.Models.AnalyticsViewModel
+
+@{
+    ViewBag.Title = "AnalyticsDashboard";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+
+<script src="~/lib/chart/chart.min.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>*@
+<style>
+    .card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        padding: 20px;
+        margin-bottom: 25px;
+        border: none;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+
+    .stat-card {
+        border-bottom: 5px solid #3498db;
+    }
+
+    .revenue {
+        border-bottom-color: #2ecc71;
+    }
+
+    .customers {
+        border-bottom-color: #9b59b6;
+    }
+
+    .pending {
+        border-bottom-color: #f1c40f;
+    }
+
+    .count {
+        font-size: 32px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .label-text {
+        font-size: 11px;
+        color: #7f8c8d;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .status-pill {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .bg-success {
+        background-color: #2ecc71;
+    }
+
+    .bg-warning {
+        background-color: #f39c12;
+    }
+</style>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card stat-card">
+                    <div class="label-text">Total Bookings</div>
+                    <a href="BookingDetails"> <div class="count" data-target="@Model.TotalBookings">0</div> </a>
+</div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card revenue">
+                    <div class="label-text">Total Revenue</div>
+                    <div class="count" data-target="@Model.TotalRevenue">0</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card customers">
+                    <div class="label-text">Customers</div>
+                    <a href="CustomerDetails"><div class="count" data-target="@Model.TotalCustomers">0</div></a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card pending">
+                    <div class="label-text">Upcoming</div>
+                    <div class="count" data-target="@Model.UpcomingEvents">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <h4>Event Popularity (3D Donut)</h4>
+                    <div style="height:280px"><canvas id="donutChart"></canvas></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <h4>Amenities Demand (Horizontal)</h4>
+                    <div style="height:280px"><canvas id="horizBarChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h4>Recent Bookings Activity</h4>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr><th>Customer</th><th>Event</th><th>Date</th><th>Amount</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.RecentBookings)
+                            {
+                                <tr>
+                                    <td><b>@(item.UserMaster != null ? item.UserMaster.Name : "Unknown")</b></td>
+                                    <td>@item.EventList</td>
+                                    <td>@(item.BookDate.HasValue ? item.BookDate.Value.ToString("dd-MMM-yyyy") : "N/A")</td>
+                                    <td>₹ @item.TotalAmount</td>
+                                    <td>
+                                        @if (item.TotalAmount > 0)
+                                        {
+                                            <span class="status-pill bg-success">Confirmed</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="status-pill bg-warning">Pending</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Counter Logic
+        document.querySelectorAll('.count').forEach(c => {
+            const target = +c.getAttribute('data-target');
+            let count = 0;
+            const inc = target / 40;
+            const update = () => {
+                if (count < target) {
+                    count = Math.ceil(count + inc);
+                    c.innerText = target > 1000 ? '₹ ' + count.toLocaleString() : count;
+                    setTimeout(update, 30);
+                } else {
+                    c.innerText = target > 1000 ? '₹ ' + target.toLocaleString() : target;
+                }
+            };
+            update();
+        });
+
+        // Donut Chart
+        new Chart(document.getElementById('donutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: @Html.Raw(Json.Encode(Model.EventNames)),
+                datasets: [{
+                    data: @Html.Raw(Json.Encode(Model.EventCounts)),
+                    backgroundColor: ['#3498db', '#e74c3c', '#f1c40f', '#2ecc71'],
+                    hoverOffset: 25, borderWidth: 4, borderColor: '#fff'
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '65%' }
+        });
+
+        // Bar Chart
+        new Chart(document.getElementById('horizBarChart'), {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Encode(Model.AmenityNames)),
+                datasets: [{
+                    data: @Html.Raw(Json.Encode(Model.AmenityCounts)),
+                    /* backgroundColor: 'rgba(52, 152, 219, 0.8)', borderRadius: 10*/
+                    backgroundColor: ['#3498db', '#e74c3c', '#f1c40f', '#2ecc71'], borderRadius: 10
+                }]
+            },
+            options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+    });
+</script>
+
