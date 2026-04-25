@@ -372,19 +372,22 @@
 
                         </div>
                     </div>
-                    <div class="row" style="margin-top:15px;">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-6">
+                    if (@Model != null && @Model.BookingId > 0)
+                    {
 
-                            <input type="submit" id="btnbook" value="Book Now" class="btn-grad" style="border-radius:20px 20px 20px 20px;cursor:pointer" />
+                    }
+                    else
+                    {
+                        <div class="row" style="margin-top:15px;">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
 
+                                <input type="submit" id="btnbook" value="Book Now" class="btn-grad" style="border-radius:20px 20px 20px 20px;cursor:pointer" />
+
+                            </div>
+                            <div class="col-sm-3"></div>
                         </div>
-                        <div class="col-sm-3"></div>
-
-                    </div>
-
-
-
+                    }
                 }
             </div>
         </div>

@@ -2771,6 +2771,10 @@
     <Content Include="Views\Admin\EnquiryDetails.cshtml" />
     <Content Include="Views\Admin\ContactsDetails.cshtml" />
     <Content Include="Views\Shared\_Chatbot.cshtml" />
+    <Content Include="Views\Customer\BookingDetailsForCustomer.cshtml" />
+    <Content Include="Views\Customer\FeedBackForCustomer.cshtml" />
+    <Content Include="Views\Customer\ComplaintsForCustomer.cshtml" />
+    <Content Include="Views\Customer\SentEmailByCustomer.cshtml" />
     <Content Include="Views\Admin\AnalyticsDashboard.cshtml" />
     <Content Include="Views\Admin\GenerateBill.cshtml" />
     <None Include="Web.Debug.config">

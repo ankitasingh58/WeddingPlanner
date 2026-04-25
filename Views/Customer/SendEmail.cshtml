@@ -61,9 +61,9 @@
                                     <div class="input-group-text"><i class="fa fa-user" style="font-size: 30px; color: #8b45139b"></i></div>
                                 </div>&emsp;&emsp;
                                 <!-- <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Enter the Name" required>
-                           <input type="email" class="form-control" id="nombre" name="email" placeholder="Email" required>
-                        <textarea class="form-control" placeholder="Message" required></textarea>-->
-                                @Html.TextBox("EmailId", null, new { placeholder = "emailId", @class = "form-control", type="text" })
+               <input type="email" class="form-control" id="nombre" name="email" placeholder="Email" required>
+            <textarea class="form-control" placeholder="Message" required></textarea>-->
+                                @Html.TextBox("EmailId", null, new { placeholder = "emailId", @class = "form-control", type = "text" })
                             </div>
                         </div>
                         <div class="form-group">
@@ -83,13 +83,20 @@
                                 @Html.TextArea("Message", new { placeholder = "Message" + "", @class = "form-control", style = "min-height:60px;" })
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-6 text-center" style="margin-top:20px;margin-bottom:11px;">
-                                <input type="submit" value="Send Email" class="btn btn-grad" id="SendEmail">
+                        @if (@Model != null && @Model.Send_Id > 0)
+                        {
+
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-6 text-center" style="margin-top:20px;margin-bottom:11px;">
+                                    <input type="submit" value="Send Email" class="btn btn-grad" id="SendEmail">
+                                </div>
+                                <div class="col-sm-3"></div>
                             </div>
-                            <div class="col-sm-3"></div>
-                        </div>
+                        }
                     </div>
 
                 </div>

@@ -19,5 +19,6 @@ namespace Wedding_Planner.Models
         public string Subject { get; set; }
         public string Message { get; set; }
         public Nullable<System.DateTime> Send_On { get; set; }
+        public string SendBy { get; set; }
     }
 }
