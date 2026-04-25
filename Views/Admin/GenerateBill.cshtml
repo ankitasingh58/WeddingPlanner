@@ -1,0 +1,126 @@
+﻿@model Wedding_Planner.Models.BookingMaster
+
+@{
+    Layout = null; // Billing ke liye humein sidebar/navbar nahi chahiye
+    ViewBag.Title = "GenerateBill";
+    //Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice - #@Model.BookingId</title>
+   
+    <style>
+        body { background: #f5f5f5; padding-top: 30px; }
+        .invoice-box {
+            max-width: 800px; margin: auto; padding: 30px;
+            border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 16px; line-height: 24px; background: #fff;
+            border-radius: 10px;
+        }
+        .invoice-header { border-bottom: 2px solid #3498db; margin-bottom: 20px; padding-bottom: 10px; }
+        .company-name { font-size: 28px; font-weight: bold; color: #3498db; }
+        .bill-to { margin-top: 20px; margin-bottom: 20px; }
+        .table-invoice { margin-top: 20px; }
+        .total-row { font-size: 20px; font-weight: bold; color: #d9534f; }
+
+        /* PRINT CSS - Jab print command denge toh sirf invoice dikhega */
+        @@media print {
+            .no-print { display: none; }
+            body { padding: 0; background: #fff; }
+            .invoice-box { border: none; box-shadow: none; width: 100%; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="no-print text-right" style="max-width: 800px; margin: 0 auto 10px auto;">
+            <button onclick="window.print()" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Print Bill</button>
+            <a href="@Url.Action("AnalyticsDashboard", "Admin")" class="btn btn-default">Back to Dashboard</a>
+        </div>
+
+        <div class="invoice-box">
+            <div class="row invoice-header">
+                <div class="col-xs-6">
+                    <div class="company-name">WEDDING PLANNER PRO</div>
+                    <p>Lucknow, Uttar Pradesh<br>Contact: +91 9876543210</p>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <h3>INVOICE</h3>
+                    <p>
+                        Invoice #: <strong>@Model.BookingId</strong><br>
+                        Date: <strong>@(Model.BookDate.HasValue ? Model.BookDate.Value.ToString("dd-MMM-yyyy") : DateTime.Now.ToString("dd-MMM-yyyy"))</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row bill-to">
+                <div class="col-xs-6">
+                    <strong>Bill To:</strong><br>
+                    @Model.UserMaster.Name<br>
+                    @Model.UserMaster.EmailId<br>
+                    @Model.UserMaster.MobileNo
+                </div>
+                <div class="col-xs-6 text-right">
+                    <strong>Event Details:</strong><br>
+                    Event: @Model.EventList<br>
+                    Location: @(Model.Lawn == "1" ? "Lawn" : "Hall")
+                </div>
+            </div>
+
+            <table class="table table-bordered table-invoice">
+                <thead>
+                    <tr style="background: #f9f9f9;">
+                        <th>Service / Amenity</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-right">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.EventList Package (Base)</td>
+                        <td class="text-center">Included</td>
+                        <td class="text-right">₹ @((Model.TotalAmount ?? 0) * 0.7)</td>
+                    </tr>
+                    @if (Model.Music == "1")
+                    {
+                        <tr><td>DJ & Music System</td><td class="text-center">Selected</td><td class="text-right">Included</td></tr>
+                    }
+                    @if (Model.Catering == "1")
+                    {
+                        <tr><td>Catering Service</td><td class="text-center">Selected</td><td class="text-right">Included</td></tr>
+                    }
+                    @if (Model.Tent == "1")
+                    {
+                        <tr><td>Tent & Decoration</td><td class="text-center">Selected</td><td class="text-right">Included</td></tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="2" class="text-right">Total Payable Amount</td>
+                        <td class="text-right">₹ @Model.TotalAmount</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="row" style="margin-top: 50px;">
+                <div class="col-xs-6">
+                    <p>
+                        <strong>Terms & Conditions:</strong><br>
+                        <small>
+                            1. 50% advance for confirmation.<br>
+                            2. Items damaged will be charged extra.
+                        </small>
+                    </p>
+                </div>
+                <div class="col-xs-6 text-right" style="margin-top: 20px;">
+                    <p>____________________<br>Authorized Signature</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
