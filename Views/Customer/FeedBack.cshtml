@@ -9,7 +9,6 @@
     .btn-grad {
         background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
         margin: 10px;
-       
         text-align: center;
         text-transform: uppercase;
         transition: 0.5s;
@@ -18,7 +17,7 @@
         box-shadow: 0 0 20px #eee;
         border-radius: 10px;
         display: block;
-        cursor:pointer;
+        cursor: pointer;
     }
 
         .btn-grad:hover {
@@ -27,10 +26,9 @@
             text-decoration: none;
         }
 
-        .form-control
-        {
-            margin-bottom:20px;
-        }
+    .form-control {
+        margin-bottom: 20px;
+    }
 </style>
 <script>
     $(document).ready(function () {
@@ -47,19 +45,25 @@
         }
          // end: to clear controls
 
-        
+        // to manage star color on selection
 
-         // to manage star color on selection
         $(".starrating").css("cursor", "pointer");
+
         $(".starrating").click(function () {
-            $(".starrating").css("color", "white");
             var star = $(this).attr("data-star");
-            for (x = 0; x < star; x++)
-            {
-                $(".starrating").eq(x).css("color", "yellow");
-            } 
-            $("#sprating").text(star);
+            setRating(star);
         });
+        //$(".starrating").click(function () {
+        //    debugger;
+        //    $(".starrating").css("color", "white");
+        //    var star = $(this).attr("data-star");
+        //    for (x = 0; x < star; x++)
+        //    {
+        //        $(".starrating").eq(x).css("color", "yellow");
+        //    }
+        //    $("#sprating").text(star);
+        //});
+
         // to save feedback using ajax
         $("#btnfeedback").click(function () {
             // validate...
@@ -75,11 +79,21 @@
 
             });
         });
-      
+
     });
+
+    function setRating(star) {
+        $(".starrating").css("color", "white");
+        for (var x = 0; x < star; x++) {
+            $(".starrating").eq(x).css("color", "yellow");
+        }
+        $("#sprating").text(star);
+    }
+
+
 </script>
- <div class="container">
- 
+<div class="container">
+
     <div class="row" style="margin-top:28px;margin-bottom:65px; max-height:408px;">
         <div class="col-sm-2"></div>
         <div class="col-sm-4" style="background:black; padding:0px;">
@@ -92,7 +106,7 @@
             <p id="prefeed" align="center" class="h5 text-center " style="min-height:20px;width:100%;padding:2px;color:saddlebrown;display:none;">
                 @ViewBag.Msg
             </p>
-           
+
             <div class="row" style="padding-top:10px;">
                 <div class="col-sm-12">
                     @Html.TextBox("Subject", null, new { placeholder = "Title of your feedback", @class = "form-control" })
@@ -109,6 +123,16 @@
                         <span id="sprating" style="display:none">0</span>
                     </div>
                 </div>
+                @if (Model != null)
+                {
+                    <script>
+        $("#Subject").css("pointer-events", "none");
+        $(".starrating").css("pointer-events", "none");
+        $("#Message").css("pointer-events", "none");
+
+        setRating('@Model.Rating');
+                    </script>
+                }
 
                 <div class="col-sm-12" style="padding-top:10px;">
                     @Html.TextArea("Message", null, new { placeholder = "Feedback message...", @class = "form-control", style = "min-height:70px" })
@@ -119,9 +143,9 @@
                 }
                 else
                 {
-                <div class="col-sm-6">
-                    <input type="button" class="btn-grad form-control" value="Save" style="border-radius:20px; font-weight:bold;" id="btnfeedback" />
-                </div>
+                    <div class="col-sm-6">
+                        <input type="button" class="btn-grad form-control" value="Save" style="border-radius:20px; font-weight:bold;" id="btnfeedback" />
+                    </div>
                 }
             </div>
         </div>
