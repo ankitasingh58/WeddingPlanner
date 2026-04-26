@@ -18,7 +18,8 @@ dist-ssr
 bin/
 obj/
 *.csproj.user
-
+Web.config
+Web.*.config
 
 # Editor directories and files
 .vscode/*

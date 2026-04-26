@@ -34,23 +34,28 @@
         <div class="col-sm-10">
 
             <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
-                <a href="UserProfile" class="col-sm-3 navbox" style="padding:4%"><i class="fa fa-user" style="font-weight: bold;font-size:30px" aria-hidden="true"></i><h6><u>User Profile</u> </h6></a>
+
 
                 @*<a href="CustomerBookingDetails" class="col-sm-3 navbox"><h6><i class="fa fa-book" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; My Booking</h6><span style="font-weight:bold;font-size:30px">@Model.TotalBookings</span></a>*@
 
                 <a href="BookingDetailsForCustomer" class="col-sm-3 navbox"><h6><i class="fa fa-book" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; My Booking</h6><span style="font-weight:bold;font-size:30px">@Model.TotalBookings</span></a>
 
                 <a href="FeedBackForCustomer" class="col-sm-3 navbox"><h6><i class="fa fa-comments-o" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; Feed Back </h6><span style="font-weight:bold;font-size:30px">@Model.TotalFeedbacks</span></a>
+                <a href="ComplaintsForCustomer" class="col-sm-3 navbox"><h6><i class="fa fa-comments" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; Complain</h6><span style="font-weight:bold;font-size:30px">@Model.TotalComplaints</span></a>
             </div>
 
 
 
             <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
-                <a href="ComplaintsForCustomer" class="col-sm-3 navbox"><h6><i class="fa fa-comments" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; Complain</h6><span style="font-weight:bold;font-size:30px">@Model.TotalComplaints</span></a>
+
 
                 <a href="SentEmailByCustomer" class="col-sm-3 navbox"><h6><i class="fa fa-envelope" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; SMS/Email</h6><span style="font-weight:bold;font-size:30px">@Model.TotalEmails</span></a>
 
-                <a href="ChangePassword" class="col-sm-3 navbox" style="padding:4%"><i class="fa fa-key" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i><h6><u>Change Paswrd</u></h6></a>
+                <a href="BookingDetailsForCustomer" class="col-sm-3 navbox"><h6><i class="fa fa-rupee" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i>&emsp; Bill Details</h6><span style="font-weight:bold;font-size:30px">@Model.TotalBookings</span></a>
+
+                <a href="UserProfile" class="col-sm-3 navbox" style="padding:4%"><i class="fa fa-user" style="font-weight: bold;font-size:30px" aria-hidden="true"></i><h6><u>User Profile</u> </h6></a>
+
+                @*<a href="ChangePassword" class="col-sm-3 navbox" style="padding:4%"><i class="fa fa-key" style="font-size: 30px; font-weight: bold" aria-hidden="true"></i><h6><u>Change Paswrd</u></h6></a>*@
             </div>
         </div>
         <div class="col-sm-1"></div>
