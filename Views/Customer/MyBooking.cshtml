@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "MyBooking";
     Layout = "~/Views/Shared/User_Layout.cshtml";
+    @model Wedding_Planner.Models.BookingMaster
 }
 <script>
     $(document).ready(function () {
@@ -21,7 +22,6 @@
 
             var maxDate = year + '-' + month + '-' + day;
             $('#BookDate').attr('min', maxDate);
-
         });
 
 
@@ -308,7 +308,11 @@
                             <span style="color:black;font-size:14px;">CHOOSE EVENTS</span>
                         </div>
                         <div class="col-sm-8">
-                            @Html.DropDownList("EventList", null, "Select Events", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.EventList,
+     ViewBag.EventList as SelectList,
+     "Select Events",
+     new { @class = "form-control" })
+                            @*@Html.DropDownList("EventList", null, "Select Events", new { @class = "form-control" })*@
                         </div>
                     </div>
                     <div class="row" style="padding-left:15px;padding-right:15px;">
@@ -316,7 +320,7 @@
                             <span style="color: black; font-size: 14px;">BOOK DATE</span>
                         </div>
                         <div class="col-sm-8">
-                            @Html.TextBox("BookDate", null, new { placeholder = "Booking date here", @class = "form-control", type = "date" })
+                            @Html.TextBoxFor(m => m.BookDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                         </div>
                     </div>
 
@@ -358,7 +362,8 @@
                             <span style="color: black; font-size: 14px;">TOTAL GUEST </span>
                         </div>
                         <div class="col-sm-8">
-                            @Html.TextBox("GuestCount", 1, new { placeholder = "Number of Guest", @class = "form-control", title = "Check catering", type = "number", disabled = "disabled" })
+                            @Html.TextBoxFor(m => m.GuestCount, new { placeholder = "Number of Guest", @class = "form-control", title = "Check catering", type = "number", disabled = "disabled" })
+                            @*@Html.TextBox("GuestCount", 1, new { placeholder = "Number of Guest", @class = "form-control", title = "Check catering", type = "number", disabled = "disabled" })*@
                         </div>
                     </div>
                     <div class="row" style="padding-left:15px;padding-right:15px;padding-top:5px;">
@@ -367,8 +372,19 @@
                         </div>
                         <p id="para"></p>
                         <div class="col-sm-8">
-                            <p id="amentiAmount" class="form-control" placeholder="Total Amount" style="text-align:center"></p>
-                            @Html.TextBox("TotalAmount", null, new { placeholder = "Total Amount", @class = "form-control", style = "display:none;" })
+
+                            @if (Model != null && Model.BookingId > 0)
+                            {
+                                <p id="amentiAmount" class="form-control" placeholder="Total Amount" style="text-align:center;display:none;"></p>
+                                @Html.TextBoxFor(m => m.TotalAmount, new { placeholder = "Total Amount", @class = "form-control" })
+                            }
+                            else
+                            {
+                                <p id="amentiAmount" class="form-control" placeholder="Total Amount" style="text-align:center;"></p>
+                                @Html.TextBoxFor(m => m.TotalAmount, new { placeholder = "Total Amount", @class = "form-control", style = "display:none;" })
+                            }
+
+                            @*@Html.TextBox("TotalAmount", null, new { placeholder = "Total Amount", @class = "form-control", style = "display:none;" })*@
 
                         </div>
                     </div>
