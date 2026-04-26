@@ -11,7 +11,7 @@
         min-height: 80px;
         background-color: #68392a;
         color: white;
-        padding: 5%;
+        padding: 3%;
         text-align: center;
         text-decoration: none;
         box-shadow: 3px 3px 4px 3px #191414;
@@ -36,9 +36,15 @@
         <div class="col-sm-10">
 
             <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
-                <a href="CustomerDetails" class="col-sm-3 navbox"><i class="fa fa-user" style="font-size:30px;" aria-hidden="true"></i><h6>My Customer Details</h6></a>
-                <a href="ComplainDetails" class="col-sm-3 navbox"><i class="fa fa-book" style="font-size:30px;" aria-hidden="true"></i><h6>All Complaints Details</h6></a>
-                <a href="FeedBackDetails" class="col-sm-3 navbox"><i class="fa fa-comments-o" style="font-size:30px;" aria-hidden="true"></i><h6>All FeedBacks Details </h6></a>
+                <a href="CustomerDetails" class="col-sm-3 navbox"><i class="fa fa-user" style="font-size:30px;" aria-hidden="true"></i><h6>My Customer Details</h6>
+                                                                                                                                              <span style="font-weight:bold;font-size:33px;">@Model.TotalCustomers </span>
+                </a>
+                <a href="ComplainDetails" class="col-sm-3 navbox"><i class="fa fa-book" style="font-size:30px;" aria-hidden="true"></i><h6>All Complaints Details</h6>
+                 <span style="font-weight:bold;font-size:33px;">@Model.TotalComplaint </span>
+                </a>
+                <a href="FeedBackDetails" class="col-sm-3 navbox"><i class="fa fa-comments-o" style="font-size:30px;" aria-hidden="true"></i><h6>All FeedBacks Details </h6>
+                <span style="font-weight:bold;font-size:33px;">@Model.TotalFeedback </span>
+                </a>
 
             </div>
 
@@ -47,11 +53,17 @@
             <div class="row text-white align-items-center" style="padding: 0% 0% 0% 5%">
 
 
-                <a href="BookingDetails" class="col-sm-3 navbox"><i class="fa fa-comments" style="font-size:30px;" aria-hidden="true"></i><h6>Customer Booking</h6>
-                                                                                                                                          @Model.TotalCustomers              
+                <a href="BookingDetails" class="col-sm-3 navbox">
+                    <i class="fa fa-comments" style="font-size:30px;" aria-hidden="true"></i><h6>Customer Booking</h6>
+                    <span style="font-weight:bold;font-size:33px;">@Model.TotalBookings </span>
                 </a>
-                <a href="EnquiryDetails" class="col-sm-3 navbox"><i class="fa fa-question" style="font-size:30px;" aria-hidden="true"></i><h6>Enquiery Details</h6></a>
-                <a href="ContactsDetails" class="col-sm-3 navbox"><i class="fa fa-phone" style="font-size:30px;" aria-hidden="true"></i><h6>Contact Details</h6></a>
+                <a href="EnquiryDetails" class="col-sm-3 navbox"><i class="fa fa-question" style="font-size:30px;" aria-hidden="true"></i><h6>Enquiery Details</h6>                                                                <span style="font-weight:bold;font-size:33px;">@Model.TotalEnquary </span>
+                </a>
+                <a href="ContactsDetails" class="col-sm-3 navbox">
+                    <i class="fa fa-phone" style="font-size:30px;" aria-hidden="true"></i><h6>Contact Details</h6>
+                    <span style="font-weight:bold;font-size:33px;">@Model.TotalContact </span>
+
+                </a>
             </div>
         </div>
         <div class="col-sm-1"></div>

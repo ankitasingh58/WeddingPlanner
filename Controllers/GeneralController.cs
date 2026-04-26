@@ -144,12 +144,14 @@ namespace Wedding_Planner.Controllers
                         if (lmdb.User_Type == "USER")
                         {
                             Session["uid"] = lmdb.UserId;
+                            Session["UserType"] = lmdb.User_Type;
                             return RedirectToAction("CustDashBoard", "Customer");
                         }
                         else
                         {
                             Session["aid"] = lmdb.UserId;
-                            return RedirectToAction("AdminDashBoard", "Admin");
+                            Session["UserType"] = lmdb.User_Type;
+                            return RedirectToAction("AnalyticsDashboard", "Admin");
                         }
 
                         // session
