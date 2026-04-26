@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Wedding_Planner.Models;
 using Newtonsoft.Json;
+using Wedding_Planner.App_Code;
 
 
 namespace Wedding_Planner.Controllers // Apna namespace check kar lein
 {
+    [AuthoriseUserSession]
     public class ChatController : Controller
     {
         // Database connection string (Aapke project ke mutabik)
@@ -25,7 +27,7 @@ namespace Wedding_Planner.Controllers // Apna namespace check kar lein
         public async Task<JsonResult> Ask(string message)
         {
             string reply = "Sorry, I am facing some issues. Please try again.";
-
+            string uid = Session["uid"].ToString();
             try
             {
                 using (var client = new HttpClient())
@@ -66,7 +68,8 @@ namespace Wedding_Planner.Controllers // Apna namespace check kar lein
                 {
                     UserMessage = message,
                     BotReply = reply,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    ChatUserId=uid
                 };
                 db.ChatMessages.Add(chat);
                 db.SaveChanges();
@@ -83,7 +86,9 @@ namespace Wedding_Planner.Controllers // Apna namespace check kar lein
         // 📜 Chat History Load karne ke liye
         public JsonResult GetHistory()
         {
+            string uid = Session["uid"].ToString();
             var history = db.ChatMessages
+                .Where(c => c.ChatUserId == uid)
                             .OrderByDescending(c => c.CreatedAt)
                             .Take(15)
                             .ToList()
