@@ -15,9 +15,10 @@ packages
 dist-ssr
 *.local
 .vs/
-*.csproj.user
 bin/
 obj/
+*.csproj.user
+
 
 # Editor directories and files
 .vscode/*

@@ -13,7 +13,7 @@ namespace Wedding_Planner.App_Code
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             bool status;
-            if (httpContext.Session["uid"] == null)
+            if (httpContext.Session["uid"] == null && httpContext.Session["aid"] == null)
                 status = false;
             else
                 status = true;

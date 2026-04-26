@@ -36,6 +36,7 @@
                     <th style="text-align:center">Guest</th>
                     <th style="text-align:center">Total Ammount</th>
                     <th style="text-align:center">Date & Time</th>
+                    <th style="text-align:center">Show Bill</th>
                     <th style="text-align:center">Manage Record</th>
 
 
@@ -55,6 +56,12 @@
 
                             <td style="text-align:center">@tc.TotalAmount</td>
                             <td style="text-align:center">@tc.BookDate</td>
+
+                             <td style="text-align:center">
+                                <a href="@Url.Action("GenerateBill","Admin" ,new { id = tc.BookingId})"><i class="fa fa-eye" aria-hidden="true" style="color:saddlebrown;font-size:25px;"></i></a>
+
+                            </td>
+
 
                             <td style="text-align:center">
                                 <a href="@Url.Action("DeleteCustomer","Admin" ,new { id = tc.BookingId})"><i class="fa fa-trash" aria-hidden="true" style="color:saddlebrown;font-size:25px;"></i></a>

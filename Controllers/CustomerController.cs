@@ -379,5 +379,15 @@ namespace Wedding_Planner.Controllers
             Session.Abandon();
             return RedirectToAction("/","General");
         }
+
+
+        [HttpGet]
+        public ActionResult CustomerBookingDetails()
+        {
+            ShowUserPicName();
+            string uid = Session["uid"].ToString();
+            List<BookingMaster> LstCus = db.BookingMasters.Where(x=>x.BookedBy== uid).ToList();
+            return View(LstCus);
+        }
     }
 }

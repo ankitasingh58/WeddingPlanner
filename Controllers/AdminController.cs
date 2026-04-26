@@ -10,7 +10,7 @@ using Wedding_Planner.Models;
 
 namespace Wedding_Planner.Controllers
 {
-    //[AuthoriseUserSession]
+    [AuthoriseUserSession]
     public class AdminController : Controller
     {
         Wedding_PlannerEntities db = new Wedding_PlannerEntities();
