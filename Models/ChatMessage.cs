@@ -18,5 +18,6 @@ namespace Wedding_Planner.Models
         public string UserMessage { get; set; }
         public string BotReply { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
+        public string ChatUserId { get; set; }
     }
 }
