@@ -50,6 +50,7 @@
           <Property Name="UserMessage" Type="nvarchar(max)" />
           <Property Name="BotReply" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="ChatUserId" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="CityMasters">
           <Key>
@@ -129,6 +130,7 @@
           <Property Name="Subject" Type="varchar" MaxLength="150" />
           <Property Name="Message" Type="varchar" MaxLength="550" />
           <Property Name="Send_On" Type="datetime" />
+          <Property Name="SendBy" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="UserMasters">
           <Key>
@@ -581,6 +583,7 @@
           <Property Name="Subject" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Message" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
           <Property Name="Send_On" Type="DateTime" Precision="3" />
+          <Property Name="SendBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ChatMessage">
           <Key>
@@ -590,6 +593,7 @@
           <Property Name="UserMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BotReply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="ChatUserId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -732,7 +736,8 @@
     <EntitySetMapping Name="SendEmailMasters">
       <EntityTypeMapping TypeName="IsTypeOf(Wedding_PlannerModel.SendEmailMaster)">
         <MappingFragment StoreEntitySet="SendEmailMasters">
-          <ScalarProperty Name="Send_Id" ColumnName="Send_Id" />
+          <ScalarProperty Name="SendBy" ColumnName="SendBy" />
+                <ScalarProperty Name="Send_Id" ColumnName="Send_Id" />
           <ScalarProperty Name="EmailId" ColumnName="EmailId" />
           <ScalarProperty Name="Subject" ColumnName="Subject" />
           <ScalarProperty Name="Message" ColumnName="Message" />
@@ -743,6 +748,7 @@
           <EntitySetMapping Name="ChatMessages">
             <EntityTypeMapping TypeName="Wedding_PlannerModel.ChatMessage">
               <MappingFragment StoreEntitySet="ChatMessages">
+                <ScalarProperty Name="ChatUserId" ColumnName="ChatUserId" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="BotReply" ColumnName="BotReply" />
                 <ScalarProperty Name="UserMessage" ColumnName="UserMessage" />

@@ -93,30 +93,37 @@
                 @ViewBag.Msg
             </p>
            
-                <div class="row" style="padding-top:10px;">
-                    <div class="col-sm-12">
-                        @Html.TextBox("Subject", null, new { placeholder = "Title of your feedback", @class = "form-control" })
-                    </div>
-                    <div  class="row">
-                        <div class="col-sm-12" align="center">
-                            &emsp;&emsp;
-                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="1"></i>&emsp;&emsp;
-                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="2"></i>&emsp;&emsp;
-                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="3"></i>&emsp;&emsp;
-                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="4"></i>&emsp;&emsp;
-                            <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="5"></i>
+            <div class="row" style="padding-top:10px;">
+                <div class="col-sm-12">
+                    @Html.TextBox("Subject", null, new { placeholder = "Title of your feedback", @class = "form-control" })
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" align="center">
+                        &emsp;&emsp;
+                        <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="1"></i>&emsp;&emsp;
+                        <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="2"></i>&emsp;&emsp;
+                        <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="3"></i>&emsp;&emsp;
+                        <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="4"></i>&emsp;&emsp;
+                        <i class="fa fa-star starrating" aria-hidden="true" style="color:white; font-size:30px;" data-star="5"></i>
 
-                            <span id="sprating" style="display:none">0</span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12" style="padding-top:10px;"> 
-                        @Html.TextArea("Message", null, new { placeholder = "Feedback message...", @class = "form-control", style = "min-height:70px" })
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="button" class="btn-grad form-control" value="Save" style="border-radius:20px; font-weight:bold;" id="btnfeedback" />
+                        <span id="sprating" style="display:none">0</span>
                     </div>
                 </div>
+
+                <div class="col-sm-12" style="padding-top:10px;">
+                    @Html.TextArea("Message", null, new { placeholder = "Feedback message...", @class = "form-control", style = "min-height:70px" })
+                </div>
+                @if (@Model != null && @Model.FeedBackId > 0)
+                {
+
+                }
+                else
+                {
+                <div class="col-sm-6">
+                    <input type="button" class="btn-grad form-control" value="Save" style="border-radius:20px; font-weight:bold;" id="btnfeedback" />
+                </div>
+                }
+            </div>
         </div>
 
 
