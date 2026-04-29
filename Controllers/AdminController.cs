@@ -308,6 +308,61 @@ namespace Wedding_Planner.Controllers
             }
         }
 
+        public ActionResult ManageEvents()
+        {
+            return View(db.EventMasters.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult AddEvent(EventMaster ev)
+        {
+            if (ModelState.IsValid)
+            {
+                db.EventMasters.Add(ev);
+
+                // Pro-Tip: Naye event ke liye default rates (0) AmenitiesMaster mein bhi daal dete hain
+                AmentiesMaster am = new AmentiesMaster
+                {
+                    EventName = ev.EventName,
+                    Laun = "0",
+                    Hall = "0",
+                    Music = "0",
+                    Tent = "0",
+                    Parlour = "0",
+                    Catering = "0"
+                };
+                db.AmentiesMasters.Add(am);
+
+                db.SaveChanges();
+            }
+            return RedirectToAction("ManageEvents");
+        }
+
+        // --- 2. MANAGE RATES (Amenities Management) ---
+
+        public ActionResult ManageRates()
+        {
+            return View(db.AmentiesMasters.ToList());
+        }
+
+        public ActionResult EditRates(string eventName)
+        {
+            var rateData = db.AmentiesMasters.FirstOrDefault(x => x.EventName == eventName);
+            return View(rateData);
+        }
+
+        [HttpPost]
+        public ActionResult EditRates(AmentiesMaster am)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(am).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageRates");
+            }
+            return View(am);
+        }
+
     }
 
 }

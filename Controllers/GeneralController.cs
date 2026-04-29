@@ -312,7 +312,7 @@ namespace Wedding_Planner.Controllers
                             MyEmailSender es = new MyEmailSender();
                             es.SendTo = um.EmailId;
                             es.Subject = "Welcome to Wedding planner";
-                            es.Message = "Hello" + um.Name + ", Welcome to Wedding Planner. \n You are successfully registered in oue web portal. Your user id is : " + um.EmailId + " and Password is: " + Pass + "\n\n Regards- \nTeams Wedding Planner";
+                            es.Message = "Hello" + um.Name + ", Welcome to Event Planner & Venue Booking System. \n You are successfully registered in oue web portal. Your user id is : " + um.EmailId + " and Password is: " + Pass + "\n\n Regards- \nTeams Event Planner";
                             es.SendEmail();
 
                         }

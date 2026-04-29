@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Wedding_Planner.Models.EventMaster>
+
+@{
+    ViewBag.Title = "ManageEvents";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="header"><h4 class="title">Add New Event</h4></div>
+            <div class="content">
+                @using (Html.BeginForm("AddEvent", "Admin", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label>Event Name</label>
+                        <input type="text" name="EventName" class="form-control" placeholder="e.g. Reception" required />
+                    </div>
+                    <button type="submit" class="btn btn-success btn-fill">Add Event</button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="header"><h4 class="title">Available Events</h4></div>
+            <div class="content table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr
+                    <th>ID</th>
+                    <th>Event Name</th>
+                    </tr></thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.EventId</td>
+                                <td><b>@item.EventName</b></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
