@@ -21,7 +21,9 @@ namespace Wedding_Planner.Controllers // Apna namespace check kar lein
         Wedding_PlannerEntities db = new Wedding_PlannerEntities();
 
         // 🟢 Step 1: Gemini API Key paste karein
-        private readonly string _apiKey = "AQ.Ab8RN6IJPRFA5zZyrig-wXZOtCjO8D2k3Mxx3MhSU5Uf42VHUA";
+        //private readonly string _apiKey = "AQ.Ab8RN6IJPRFA5zZyrig-wXZOtCjO8D2k3Mxx3MhSU5Uf42VHUA";
+        private readonly string _apiKey = "AIzaSyD3m2aht1dcX7BlKcbKAuuGi5ZMcxv1otw";
+
 
         [HttpPost]
         public async Task<JsonResult> Ask(string message)
@@ -33,8 +35,11 @@ namespace Wedding_Planner.Controllers // Apna namespace check kar lein
                 using (var client = new HttpClient())
                 {
                     // Gemini 1.5 Flash Endpoint
+
                     //string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + _apiKey;
+                    //string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" + _apiKey;
                     string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" + _apiKey;
+
                     var requestBody = new
                     {
                         contents = new[] {
