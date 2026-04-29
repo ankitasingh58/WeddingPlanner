@@ -10,7 +10,7 @@ namespace Wedding_Planner.App_Code
 {
     public class MyEmailSender
     {
-        string MyEmail = "202ankitasingh@gmail.com", MyEmailPasscode = "ebxkvaahcrlwrxgh";
+        string MyEmail = "mrpal440@gmail.com", MyEmailPasscode = "mpbmtpmiqqfknbby";
         internal string SendTo { get; set; }
         internal string CC { get; set; }
         internal string BCC { get; set; }
